@@ -1,0 +1,77 @@
+\begin{table}[htbp]
+    \renewcommand{\arraystretch}{1}
+    \centering
+    \bicaption[\xiaosi 本方法在3DMatch和3DLoMatch上与先进方法的内点率和匹配召回率的比较]{\wuhao 本方法在3DMatch和3DLoMatch上与先进方法的内点率和匹配召回率的比较}{\wuhao Comparison of Inlier Ratio and Feature Matching Recall with advanced methods on 3DMatch and 3DLoMatch}\label{tab:4-1}
+    \wuhao
+
+    \begin{tabular}{lcccccccccc}
+    \toprule[1.5pt]
+    \multicolumn{1}{c}{\multirow{3}{*}{\songti\wuhao Sample}} 
+    & \multicolumn{5}{c}{\songti\wuhao 3DMatch}
+    & \multicolumn{5}{c}{\songti\wuhao 3DLoMatch}
+    \\\multicolumn{1}{c}{}
+    &\songti\wuhao 5000 &\songti\wuhao 2500 &\songti\wuhao 1000 &\songti\wuhao500 
+    &\multicolumn{1}{c}{\songti\wuhao 250}           
+    &\songti\wuhao 5000 &\songti\wuhao 2500 &\songti\wuhao 1000 &\songti\wuhao500 
+    &\songti\wuhao 250
+
+    \\ \hline
+    \multicolumn{11}{c}{\songti\wuhao  Feature Matching Recall(\%)}
+    \\ \hline
+
+    \multicolumn{1}{c}{\wuhao PerfectMatch}
+    & 95.0          & 94.3          & 92.9          & 90.1          & \multicolumn{1}{c}{82.9}          & 63.6          & 61.7          & 53.6          & 45.2          & 34.2
+    \\
+    \multicolumn{1}{c}{\wuhao FCGF}
+    & 97.4          & 97.3          & 97.0          & 96.7          & \multicolumn{1}{c}{96.6}          & 76.6          & 75.4          & 74.2          & 71.7          & 67.3
+    \\
+    \multicolumn{1}{c}{\wuhao D3Feat}
+    & 95.6          & 95.4          & 94.5          & 94.1          & \multicolumn{1}{c}{93.1}          & 67.3          & 66.7          & 67.0          & 66.7          & 66.5
+    \\
+    \multicolumn{1}{c}{\wuhao SpinNet}
+    & 97.6          & 97.2          & 96.8          & 95.5          & \multicolumn{1}{c}{94.3}          & 75.3          & 74.9          & 72.5          & 70.0          & 63.6
+    \\
+    \multicolumn{1}{c}{\wuhao Predator}
+    & 96.6          & 96.6          & 96.5          & 96.3          & \multicolumn{1}{c}{96.5}          & 78.6          & 77.4          & 76.3          & 75.7          & 75.3
+    \\
+    \multicolumn{1}{c}{\wuhao YOHO}
+    & \textbf{98.2} & 97.6          & 97.5    & \ul{97.7}    & \multicolumn{1}{c}{96.0}          & 79.4          & 78.1          & 76.3          & 73.8          & 69.1
+    \\
+    \multicolumn{1}{c}{\wuhao CoFiNet}
+    & \ul{98.1}    & \textbf{98.3} & \ul{98.1} & \textbf{98.2} & \multicolumn{1}{c}{\textbf{98.3}} & \ul{83.1}    & \ul{83.5}    & \ul{83.3}    & \ul{83.1}    & \ul{82.6}
+    \\
+    \multicolumn{1}{c}{\wuhao Ours}
+    & 98.0          & \ul{98.0}    & \textbf{98.4} & \textbf{98.2} & \multicolumn{1}{c}{\textbf{98.3}}    & \textbf{87.6} & \textbf{87.9} & \textbf{87.4} & \textbf{87.4} & \textbf{86.8}
+
+    \\ \hline
+    \multicolumn{11}{c}{\songti\wuhao  Inlier Ratio(\%)}
+    \\ \hline
+
+    \multicolumn{1}{c}{\wuhao PerfectMatch}
+    & 36.0          & 32.5          & 26.4          & 21.5          & \multicolumn{1}{c}{16.4}          & 11.4          & 10.1          & 8.1           & 6.4           & 4.8
+    \\
+    \multicolumn{1}{c}{\wuhao FCGF}
+    & 56.8          & 54.1          & 48.7          & 42.5          & \multicolumn{1}{c}{34.1}          & 21.4          & 20.0          & 17.2          & 14.8          & 11.6
+    \\
+    \multicolumn{1}{c}{\wuhao D3Feat}
+    & 39.0          & 38.8          & 40.4          & 41.5          & \multicolumn{1}{c}{41.8}          & 13.2          & 13.1          & 14.0          & 14.6          & 15.0
+    \\
+    \multicolumn{1}{c}{\wuhao SpinNet}
+    & 47.5          & 44.7          & 39.4          & 33.9          & \multicolumn{1}{c}{27.6}          & 20.5          & 19.0          & 16.3          & 13.8          & 11.1
+    \\
+    \multicolumn{1}{c}{\wuhao Predator}
+    & 58.0          & 58.4          & \ul{57.1}    & \ul{54.1}    & \multicolumn{1}{c}{49.3}          & \ul{26.7}    & \ul{28.1}    & \ul{28.3}    & \ul{27.5}    & 25.8
+    \\
+    \multicolumn{1}{c}{\wuhao YOHO}
+    & \ul{64.4}    & \ul{60.7}    & 55.7          & 46.4          & \multicolumn{1}{c}{41.2}          & 25.9          & 23.3          & 22.6          & 18.2          & 15.0
+    \\
+    \multicolumn{1}{c}{\wuhao CoFiNet}
+    & 49.8          & 51.2          & 51.9          & 52.2          & \multicolumn{1}{c}{\ul{52.2}}    & 24.4          & 25.9          & 26.7          & 26.8          & \ul{26.9}
+    \\
+
+    \multicolumn{1}{c}{\wuhao Ours}
+    & \textbf{71.9} & \textbf{78.5} & \textbf{83.0} & \textbf{84.8} & \multicolumn{1}{c}{\textbf{85.8}} & \textbf{41.4} & \textbf{47.0} & \textbf{52.9} & \textbf{55.5} & \textbf{57.1}
+    
+    \\ \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}

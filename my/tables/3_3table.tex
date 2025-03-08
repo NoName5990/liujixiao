@@ -1,0 +1,44 @@
+\begin{table}[h]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{7mm}{
+    \bicaption[\xiaosi 最先进的方法和本方法在KITTI数据集上的性能比较。]{\wuhao 最先进的方法和本方法在KITTI数据集上的性能比较}{\wuhao Comparisons between the SOTA and this method on the KITTI}
+    \label{tab:kitti}
+    \wuhao
+
+    \begin{tabular}{lccc}
+    \toprule[1.5pt]
+    Model          &RTE(cm)        &RRE($^\circ$) &RR(\%)
+    \\ \hline
+    3DFeat-Net
+    & 25.9         & \ul{0.25}     & 96.0 
+    \\
+    FCGF
+    & 9.5          & 0.30          & 96.6
+    \\
+    D3Feat
+    & 7.2          & 0.30          & \textbf{99.8}
+    \\
+    SpinNet
+    & 9.9          & 0.47          & \ul{99.1}
+    \\
+    Predator
+    & \ul{6.8}     & 0.27          & \textbf{99.8}
+    \\
+    CoFiNet
+    & 8.2          & 0.41          & \textbf{99.8}
+    \\
+    Geo(Ransac-50k)
+    & 7.4          & 0.27          & \textbf{99.8}
+    \\
+    Geo(LGR)
+    & \ul{6.8}     & \textbf{0.24} & \textbf{99.8}
+    \\
+    %Ours (Ransac-50k) & 9.6          & 0.33          & \textbf{99.8} \\
+    Ours(LGR)
+    & \textbf{6.2} & 0.30          & \textbf{99.8}
+    \\
+    \bottomrule[1.5pt]
+    \end{tabular}
+    }
+\end{table}
