@@ -1,0 +1,585 @@
+% %参考文献
+% \begin{thebibliography}{200}
+% \wuhao %设置参考文献字体大小
+% \linespread{1}\selectfont
+% \setlength{\itemsep}{-1.4ex} %缩小条目间行距
+% \thispagestyle{others}
+% \pagestyle{others}
+
+% \makeatletter
+% \renewcommand\@biblabel[1]{[#1]\hfill} %序号左对齐
+% \makeatother
+% \setlength{\labelsep}{0cm}
+
+%   \providecommand{\bibauthor}[1]{#1}
+%   \providecommand{\bibeditor}[1]{#1}
+%   \providecommand{\bibtranslator}[1]{#1}
+%   \providecommand{\bibtitle}[1]{#1}
+%   \providecommand{\bibbooktitle}[1]{#1}
+%   \providecommand{\bibjournal}[1]{#1}
+%   \providecommand{\bibmark}[1]{#1}
+%   \providecommand{\bibcountry}[1]{#1}
+%   \providecommand{\bibpatentid}[1]{#1}
+%   \providecommand{\bibedition}[1]{#1}
+%   \providecommand{\biborganization}[1]{#1}
+%   \providecommand{\bibaddress}[1]{#1}
+%   \providecommand{\bibpublisher}[1]{#1}
+%   \providecommand{\bibinstitution}[1]{#1}
+%   \providecommand{\bibschool}[1]{#1}
+%   \providecommand{\bibvolume}[1]{#1}
+%   \providecommand{\bibnumber}[1]{#1}
+%   \providecommand{\bibpages}[1]{#1}
+%   \providecommand{\bibmodifydate}[1]{#1}
+%   \providecommand{\bibcitedate}[1]{#1}
+%   \providecommand{\bibyear}[1]{#1}
+%   \providecommand{\bibdate}[1]{#1}
+%   \providecommand{\biburl}[1]{\url{#1}}
+  
+%   \bibitem{PointNetVLAD}
+%   \bibauthor{UY M~A\@, LEE G~H}\@. \bibtitle{PointNetVLAD: Deep point cloud based
+%     retrieval for large-scale place recognition}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Salt Lake City, USA}\@,
+%     \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{4470\thinspace{}\textnormal{--}\thinspace{}4479}\@.
+  
+%   \bibitem{文物}
+%   \bibauthor{赵夫群\@, 周明全}\@.
+%     \bibtitle{文物点云模型的优化配准算法}\bibmark{[J]}\@.
+%     \bibjournal{计算机应用研究}\@, \bibyear{2017}\@,
+%     \bibvolume{34}\bibnumber{(12)}\thinspace{}\textnormal{: }\bibpages{4}\@.
+  
+%   \bibitem{逆向工程}
+%   \bibauthor{宋丽梅}\@.
+%     \bibtitle{双目立体机器视觉检测系统及其应用}\bibmark{[J]}\@.
+%     \bibjournal{西南科技大学学报}\@, \bibyear{2006}\@,
+%     \bibvolume{21}\bibnumber{(1)}\thinspace{}\textnormal{:
+%     }\bibpages{30\thinspace{}\textnormal{--}\thinspace{}34}\@.
+  
+%   \bibitem{Map-matching}
+%   \bibauthor{SOBREIRA H\@, COSTA C~M\@, SOUSA I, et~al}\@. \bibtitle{Map-matching
+%     algorithms for robot self-localization: a comparison between perfect match,
+%     iterative closest point and normal distributions transform}\bibmark{[J]}\@.
+%     \bibjournal{Intelligent \& Robotic Systems}\@, \bibyear{2019}\@,
+%     \bibvolume{93}\thinspace{}\textnormal{:
+%     }\bibpages{533\thinspace{}\textnormal{--}\thinspace{}546}\@.
+  
+%   \bibitem{LCDNet}
+%   \bibauthor{CATTANEO D\@, VAGHI M\@, VALADA A}\@. \bibtitle{LCDNet: Deep loop
+%     closure detection and point cloud registration for LiDAR
+%     SLAM}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Robotics}\@,
+%     \bibyear{2022}\@, \bibvolume{38}\bibnumber{(4)}\thinspace{}\textnormal{:
+%     }\bibpages{2074\thinspace{}\textnormal{--}\thinspace{}2093}\@.
+  
+%   \bibitem{LPD}
+%   \bibauthor{LIU Z\@, ZHOU S\@, SUO C, et~al}\@. \bibtitle{LPD-Net: 3D point
+%     cloud learning for large-scale place recognition and environment
+%     analysis}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF International Conference on
+%     Computer Vision}\@, \bibaddress{Seoul, Korea}\@,
+%     \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{2831\thinspace{}\textnormal{--}\thinspace{}2840}\@.
+  
+%   \bibitem{2015review}
+%   \bibauthor{POMERLEAU F\@, COLAS F\@, SIEGWART R, et~al}\@. \bibtitle{A review
+%     of point cloud registration algorithms for mobile robotics}\bibmark{[J]}\@.
+%     \bibjournal{Foundations and Trends{\textregistered} in Robotics}\@,
+%     \bibyear{2015}\@, \bibvolume{4}\bibnumber{(1)}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}104}\@.
+  
+%   \bibitem{ICP}
+%   \bibauthor{BESL P\@, MCKAY N~D}\@. \bibtitle{A method for registration of 3-D
+%     shapes}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Pattern Analysis and
+%     Machine Intelligence}\@, \bibyear{1992}\@,
+%     \bibvolume{14}\bibnumber{(2)}\thinspace{}\textnormal{:
+%     }\bibpages{239\thinspace{}\textnormal{--}\thinspace{}256}\@.
+  
+%   \bibitem{1998}
+%   \bibauthor{GOLD S\@, RANGARAJAN A\@, LU C-P, et~al}\@. \bibtitle{New algorithms
+%     for 2D and 3D point matching: pose estimation and
+%     correspondence}\bibmark{[J]}\@. \bibjournal{Pattern Recognition}\@,
+%     \bibyear{1998}\@, \bibvolume{31}\bibnumber{(8)}\thinspace{}\textnormal{:
+%     }\bibpages{1019\thinspace{}\textnormal{--}\thinspace{}1031}\@.
+  
+%   \bibitem{Go-ICP}
+%   \bibauthor{YANG J\@, LI H\@, JIA Y}\@. \bibtitle{Go-ICP: Solving 3D
+%     registration efficiently and globally optimally}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF International Conference on Computer Vision}\@,
+%     \bibaddress{Sydney, Australia}\@, \bibyear{2013}\thinspace{}\textnormal{:
+%     }\bibpages{1457\thinspace{}\textnormal{--}\thinspace{}1464}\@.
+  
+%   \bibitem{Almohamad}
+%   \bibauthor{ALMOHAMAD H\@, DUFFUAA S~O}\@. \bibtitle{A linear programming
+%     approach for the weighted graph matching problem}\bibmark{[J]}\@.
+%     \bibjournal{IEEE Transactions on pattern analysis and machine
+%     intelligence}\@, \bibyear{1993}\@,
+%     \bibvolume{15}\bibnumber{(5)}\thinspace{}\textnormal{:
+%     }\bibpages{522\thinspace{}\textnormal{--}\thinspace{}525}\@.
+  
+%   \bibitem{CSGM}
+%   \bibauthor{HUANG X\@, ZHANG J\@, FAN L, et~al}\@. \bibtitle{A systematic
+%     approach for cross-source point cloud registration by preserving macro and
+%     micro structures}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Image
+%     Processing}\@, \bibyear{2017}\@,
+%     \bibvolume{26}\bibnumber{(7)}\thinspace{}\textnormal{:
+%     }\bibpages{3261\thinspace{}\textnormal{--}\thinspace{}3276}\@.
+  
+%   \bibitem{FGM}
+%   \bibauthor{ZHOU F\@, De~la TORRE F}\@. \bibtitle{Factorized graph
+%     matching}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on Computer
+%     Vision and Pattern Recognition}\@, \bibaddress{Providence, USA}\@,
+%     \bibyear{2012}\thinspace{}\textnormal{:
+%     }\bibpages{127\thinspace{}\textnormal{--}\thinspace{}134}\@.
+  
+%   \bibitem{Leordeanu}
+%   \bibauthor{LEORDEANU M\@, HEBERT M}\@. \bibtitle{A spectral technique for
+%     correspondence problems using pairwise constraints}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF International Conference on Computer Vision}\@,
+%     \bibaddress{Beijing, China}\@, \bibyear{2005}\thinspace{}\textnormal{:
+%     }\bibpages{1482\thinspace{}\textnormal{--}\thinspace{}1489}\@.
+  
+%   \bibitem{JRMPC}
+%   \bibauthor{EVANGELIDIS G~D\@, KOUNADES-BASTIAN D\@, HORAUD R, et~al}\@.
+%     \bibtitle{A generative model for the joint registration of multiple point
+%     sets}\bibmark{[C]}\@. \bibbooktitle{European Conference on Computer
+%     Vision}\@, \bibaddress{Zurich, Switzerland}\@, \bibyear{2014}\@.
+  
+%   \bibitem{CPD}
+%   \bibauthor{MYRONENKO A\@, SONG X}\@. \bibtitle{Point set registration: coherent
+%     point drift}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Pattern
+%     Analysis and Machine Intelligence}\@, \bibyear{2010}\@,
+%     \bibvolume{32}\bibnumber{(12)}\thinspace{}\textnormal{:
+%     }\bibpages{2262\thinspace{}\textnormal{--}\thinspace{}2275}\@.
+  
+%   \bibitem{CH-GMM}
+%   \bibauthor{FAN J\@, YANG J\@, AI D, et~al}\@. \bibtitle{Convex hull indexed
+%     Gaussian mixture model for 3D point set registration}\bibmark{[J]}\@.
+%     \bibjournal{Pattern Recognition}\@, \bibyear{2016}\@,
+%     \bibvolume{59}\thinspace{}\textnormal{:
+%     }\bibpages{126\thinspace{}\textnormal{--}\thinspace{}141}\@.
+  
+%   \bibitem{PointNetLK}
+%   \bibauthor{AOKI Y\@, GOFORTH H\@, SRIVATSAN R~A, et~al}\@.
+%     \bibtitle{PointNetLK: robust \& efficient point cloud registration ssing
+%     pointNet}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on Computer
+%     Vision and Pattern Recognition}\@, \bibaddress{Seoul, Korea}\@,
+%     \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{7156\thinspace{}\textnormal{--}\thinspace{}7165}\@.
+  
+%   \bibitem{LucasKanade}
+%   \bibauthor{BAKER S\@, MATTHEWS I}\@. \bibtitle{Lucas-Kanade 20 years on: A
+%     unifying framework}\bibmark{[J]}\@. \bibjournal{International Journal of
+%     Computer Vision}\@, \bibyear{2004}\@, \bibvolume{56}\thinspace{}\textnormal{:
+%     }\bibpages{221\thinspace{}\textnormal{--}\thinspace{}255}\@.
+  
+%   \bibitem{PPF}
+%   \bibauthor{DENG H\@, BIRDAL T\@, ILIC S}\@. \bibtitle{PPFNet: Global context
+%     aware local features for robust 3D point matching}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Salt Lake City, USA}\@,
+%     \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{195\thinspace{}\textnormal{--}\thinspace{}205}\@.
+  
+%   \bibitem{FMR}
+%   \bibauthor{HUANG X\@, MEI G\@, ZHANG J}\@. \bibtitle{Feature-Metric
+%     registration: A fast semi-Supervised approach for robust point cloud
+%     registration without correspondences}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF
+%     Conference on Computer Vision and Pattern Recognition}\@,
+%     \bibaddress{Seattle, USA}\@, \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{11363\thinspace{}\textnormal{--}\thinspace{}11371}\@.
+  
+%   \bibitem{OMNet}
+%   \bibauthor{XU H\@, LIU S\@, WANG G, et~al}\@. \bibtitle{OMNet: Learning
+%     overlapping mask for partial-to-partial point cloud
+%     registration}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF International Conference
+%     on Computer Vision}\@, \bibaddress{Montreal, Canada}\@,
+%     \bibyear{2021}\thinspace{}\textnormal{:
+%     }\bibpages{3112\thinspace{}\textnormal{--}\thinspace{}3121}\@.
+  
+%   \bibitem{PointNet}
+%   \bibauthor{CHARLES R~Q\@, SU H\@, KAICHUN M, et~al}\@. \bibtitle{PointNet: Deep
+%     learning on point sets for 3D classification and
+%     segmentation}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on Computer
+%     Vision and Pattern Recognition}\@, \bibaddress{Honolulu, USA}\@,
+%     \bibyear{2017}\thinspace{}\textnormal{:
+%     }\bibpages{77\thinspace{}\textnormal{--}\thinspace{}85}\@.
+  
+%   \bibitem{PointNet++}
+%   \bibauthor{QI R\@, YI L\@, SU H, et~al}\@. \bibtitle{Pointnet++: Deep
+%     hierarchical feature learning on point sets in a metric
+%     space}\bibmark{[J]}\@. \bibjournal{Advances in Neural Information Processing
+%     Systems}\@, \bibyear{2017}\@, \bibvolume{30}\thinspace{}\textnormal{:
+%     }\bibpages{5099\thinspace{}\textnormal{--}\thinspace{}5108}\@.
+  
+%   \bibitem{3DFeat-Net}
+%   \bibauthor{YEW Z~J\@, LEE G~H}\@. \bibtitle{3DFeat-Net: Weakly supervised local
+%     3D features for point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{European Conference on Computer Vision}\@, \bibaddress{Munich,
+%     Germany}\@, \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{630\thinspace{}\textnormal{--}\thinspace{}646}\@.
+  
+%   \bibitem{PerfectMatch}
+%   \bibauthor{GOJCIC Z\@, ZHOU C\@, WEGNER J~D, et~al}\@. \bibtitle{The Perfect
+%     Match: 3D Point Cloud Matching With Smoothed Densities}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Long Beach, USA}\@,
+%     \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{5540\thinspace{}\textnormal{--}\thinspace{}5549}\@.
+  
+%   \bibitem{DGCNN}
+%   \bibauthor{WANG Y\@, SUN Y\@, LIU Z, et~al}\@. \bibtitle{Dynamic graph cnn for
+%     learning on point clouds}\bibmark{[J]}\@. \bibjournal{Acm Transactions On
+%     Graphics}\@, \bibyear{2019}\@,
+%     \bibvolume{38}\bibnumber{(5)}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}12}\@.
+  
+%   \bibitem{KPConv}
+%   \bibauthor{THOMAS H\@, QI C~R\@, DESCHAUD J-E, et~al}\@. \bibtitle{KPConv:
+%     Flexible and deformable convolution for point clouds}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF International Conference on Computer Vision}\@,
+%     \bibaddress{Seoul, Korea}\@, \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{6410\thinspace{}\textnormal{--}\thinspace{}6419}\@.
+  
+%   \bibitem{3DMatch}
+%   \bibauthor{ZENG A\@, SONG S\@, NIEßNER M, et~al}\@. \bibtitle{3DMatch:
+%     Learning local geometric descriptors from RGB-D
+%     reconstructions}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on
+%     Computer Vision and Pattern Recognition}\@, \bibaddress{Honolulu, USA}\@,
+%     \bibyear{2017}\thinspace{}\textnormal{:
+%     }\bibpages{199\thinspace{}\textnormal{--}\thinspace{}208}\@.
+  
+%   \bibitem{FCGF}
+%   \bibauthor{CHOY C\@, PARK J\@, KOLTUN V}\@. \bibtitle{Fully convolutional
+%     geometric features}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF International
+%     Conference on Computer Vision}\@, \bibaddress{Seoul, Korea}\@,
+%     \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{8957\thinspace{}\textnormal{--}\thinspace{}8965}\@.
+  
+%   \bibitem{SpinNet}
+%   \bibauthor{AO S\@, HU Q\@, YANG B, et~al}\@. \bibtitle{Spinnet: Learning a
+%     general surface descriptor for 3d point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{virtual}\@,
+%     \bibyear{2021}\thinspace{}\textnormal{:
+%     }\bibpages{11753\thinspace{}\textnormal{--}\thinspace{}11762}\@.
+  
+%   \bibitem{D3Feat}
+%   \bibauthor{BAI X\@, LUO Z\@, ZHOU L, et~al}\@. \bibtitle{D3Feat: Joint learning
+%     of dense detection and description of 3D local features}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Seattle, USA}\@,
+%     \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{6358\thinspace{}\textnormal{--}\thinspace{}6366}\@.
+  
+%   \bibitem{PREDATOR}
+%   \bibauthor{HUANG S\@, GOJCIC Z\@, USVYATSOV M, et~al}\@. \bibtitle{PREDATOR:
+%     Registration of 3D point clouds with low overlap}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{virtual}\@,
+%     \bibyear{2021}\thinspace{}\textnormal{:
+%     }\bibpages{4265\thinspace{}\textnormal{--}\thinspace{}4274}\@.
+  
+%   \bibitem{PointDSC}
+%   \bibauthor{BAI X\@, LUO Z\@, ZHOU L, et~al}\@. \bibtitle{PointDSC: Robust point
+%     cloud registration using deep spatial consistency}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{virtual}\@,
+%     \bibyear{2021}\thinspace{}\textnormal{:
+%     }\bibpages{15854\thinspace{}\textnormal{--}\thinspace{}15864}\@.
+  
+%   \bibitem{DCP}
+%   \bibauthor{WANG Y\@, SOLOMON J}\@. \bibtitle{Deep Closest Point: Learning
+%     representations for point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF International Conference on Computer Vision}\@,
+%     \bibaddress{Seoul, Korea}\@, \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{3522\thinspace{}\textnormal{--}\thinspace{}3531}\@.
+  
+%   \bibitem{IDAM}
+%   \bibauthor{LI J\@, ZHANG C\@, XU Z, et~al}\@. \bibtitle{Iterative
+%     distance-aware similarity matrix convolution with mutual-supervised point
+%     elimination for efficient point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{European Conference on Computer Vision}\@, \bibaddress{Glasgow,
+%     UK}\@, \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{378\thinspace{}\textnormal{--}\thinspace{}394}\@.
+  
+%   \bibitem{DGR}
+%   \bibauthor{CHOY C\@, DONG W\@, KOLTUN V}\@. \bibtitle{Deep global
+%     registration}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on Computer
+%     Vision and Pattern Recognition}\@, \bibaddress{Seattle, USA}\@,
+%     \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{2511\thinspace{}\textnormal{--}\thinspace{}2520}\@.
+  
+%   \bibitem{Dope}
+%   \bibauthor{MIN T\@, SONG C\@, KIM E, et~al}\@. \bibtitle{Distinctiveness
+%     oriented positional equilibrium for point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF International Conference on Computer Vision}\@,
+%     \bibaddress{Montreal, Canada}\@, \bibyear{2021}\thinspace{}\textnormal{:
+%     }\bibpages{5490\thinspace{}\textnormal{--}\thinspace{}5498}\@.
+  
+%   \bibitem{Deeper}
+%   \bibauthor{LI Q\@, HAN Z\@, WU X-M}\@. \bibtitle{Deeper Insights into Graph
+%     Convolutional Networks for Semi-Supervised Learning}\bibmark{[C]}\@.
+%     \bibbooktitle{Proceedings of the AAAI Conference on Artificial
+%     Intelligence}\@, \bibaddress{New Orleans, USA}\@,
+%     \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{3538\thinspace{}\textnormal{--}\thinspace{}3545}\@.
+  
+%   \bibitem{Measuring}
+%   \bibauthor{CHEN D\@, LIN Y\@, LI W, et~al}\@. \bibtitle{Measuring and relieving
+%     the over-smoothing problem for graph neural networks from the topological
+%     view}\bibmark{[J]}\@. \bibjournal{Proceedings of the AAAI Conference on
+%     Artificial Intelligence}\@, \bibyear{2020}\@,
+%     \bibvolume{34}\bibnumber{(04)}\thinspace{}\textnormal{:
+%     }\bibpages{3438\thinspace{}\textnormal{--}\thinspace{}3445}\@.
+  
+%   \bibitem{RANSAC}
+%   \bibauthor{FISCHLER M~A\@, BOLLES R~C}\@. \bibtitle{Random sample consensus: a
+%     paradigm for model fitting with applications to image analysis and automated
+%     cartography}\bibmark{[J]}\@. \bibjournal{Communications of the ACM}\@,
+%     \bibyear{1981}\@, \bibvolume{24}\bibnumber{(6)}\thinspace{}\textnormal{:
+%     }\bibpages{381\thinspace{}\textnormal{--}\thinspace{}395}\@.
+  
+%   \bibitem{Temporal}
+%   \bibauthor{YUAN Z\@, SONG X\@, BAI L, et~al}\@. \bibtitle{Temporal-channel
+%     transformer for 3d lidar-based video object detection for autonomous
+%     driving}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Circuits and
+%     Systems for Video Technology}\@, \bibyear{2021}\@,
+%     \bibvolume{32}\bibnumber{(4)}\thinspace{}\textnormal{:
+%     }\bibpages{2068\thinspace{}\textnormal{--}\thinspace{}2078}\@.
+  
+%   \bibitem{L3Net}
+%   \bibauthor{LU W\@, ZHOU Y\@, WAN G, et~al}\@. \bibtitle{L3-Net: Towards
+%     learning based LiDAR localization for autonomous driving}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Long Beach, USA}\@,
+%     \bibyear{2019}\thinspace{}\textnormal{:
+%     }\bibpages{6382\thinspace{}\textnormal{--}\thinspace{}6391}\@.
+  
+%   \bibitem{IMLSSLAM}
+%   \bibauthor{DESCHAUD J-E}\@. \bibtitle{IMLS-SLAM: Scan-to-Model matching based
+%     on 3D data}\bibmark{[C]}\@. \bibbooktitle{IEEE International Conference on
+%     Robotics and Automation}\@, \bibaddress{Brisbane, Australia}\@,
+%     \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{2480\thinspace{}\textnormal{--}\thinspace{}2485}\@.
+  
+%   \bibitem{Positioning}
+%   \bibauthor{BENEDEK C\@, MAJDIK A\@, NAGY B, et~al}\@. \bibtitle{Positioning and
+%     perception in LiDAR point clouds}\bibmark{[J]}\@. \bibjournal{Digital Signal
+%     Processing}\@, \bibyear{2021}\@, \bibvolume{119}\thinspace{}\textnormal{:
+%     }\bibpages{103193}\@.
+  
+%   \bibitem{Generative_Adversarial}
+%   \bibauthor{TAN L\@, LIN X\@, NIU D, et~al}\@. \bibtitle{Projected generative
+%     adversarial network for point cloud completion}\bibmark{[J]}\@.
+%     \bibjournal{IEEE Transactions on Circuits and Systems for Video
+%     Technology}\@, \bibyear{2023}\@,
+%     \bibvolume{33}\bibnumber{(2)}\thinspace{}\textnormal{:
+%     }\bibpages{771\thinspace{}\textnormal{--}\thinspace{}781}\@.
+  
+%   \bibitem{Single_Image}
+%   \bibauthor{NGUYEN A-D\@, CHOI S\@, KIM W, et~al}\@. \bibtitle{Single-Image 3D
+%     reconstruction: rethinking point cloud deformation}\bibmark{[J]}\@.
+%     \bibjournal{IEEE Transactions on Neural Networks and Learning Systems}\@,
+%     \bibyear{2022}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}15}\@.
+  
+%   \bibitem{LPOT}
+%   \bibauthor{WANG G}\@. \bibtitle{LPOT: Locality-Preserving gromov-wasserstein
+%     discrepancy for nonrigid point set registration}\bibmark{[J]}\@.
+%     \bibjournal{IEEE Transactions on Neural Networks and Learning Systems}\@,
+%     \bibyear{2022}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}13}\@.
+  
+%   \bibitem{Birds_Stone}
+%   \bibauthor{GU C\@, CONG Y\@, SUN G}\@. \bibtitle{Three Birds, One Stone:
+%     Unified laser-based 3D reconstruction across different media}\bibmark{[J]}\@.
+%     \bibjournal{IEEE Transactions on Instrumentation and Measurement}\@,
+%     \bibyear{2021}\@, \bibvolume{70}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}12}\@.
+  
+%   \bibitem{INENet}
+%   \bibauthor{WU Y\@, ZHANG Y\@, FAN X, et~al}\@. \bibtitle{INENet: Inliers
+%     estimation network with similarity learning for partial overlapping
+%     registration}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Circuits and
+%     Systems for Video Technology}\@, \bibyear{2023}\@,
+%     \bibvolume{33}\bibnumber{(3)}\thinspace{}\textnormal{:
+%     }\bibpages{1413\thinspace{}\textnormal{--}\thinspace{}1426}\@.
+  
+%   \bibitem{Task_specific}
+%   \bibauthor{ZHANG Z\@, DAI Y\@, FAN B, et~al}\@. \bibtitle{Learning a
+%     task-specific descriptor for robust matching of 3D point
+%     clouds}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Circuits and Systems
+%     for Video Technology}\@, \bibyear{2022}\@,
+%     \bibvolume{32}\bibnumber{(12)}\thinspace{}\textnormal{:
+%     }\bibpages{8462\thinspace{}\textnormal{--}\thinspace{}8475}\@.
+  
+%   \bibitem{RANSAC_Hypotheses}
+%   \bibauthor{YANG J\@, HUANG Z\@, QUAN S, et~al}\@. \bibtitle{Toward efficient
+%     and robust metrics for RANSAC hypotheses and 3D rigid
+%     registration}\bibmark{[J]}\@. \bibjournal{IEEE Transactions on Circuits and
+%     Systems for Video Technology}\@, \bibyear{2022}\@,
+%     \bibvolume{32}\bibnumber{(2)}\thinspace{}\textnormal{:
+%     }\bibpages{893\thinspace{}\textnormal{--}\thinspace{}906}\@.
+  
+%   \bibitem{Graphite}
+%   \bibauthor{SALEH M\@, DEHGHANI S\@, BUSAM B, et~al}\@. \bibtitle{Graphite:
+%     Graph-Induced feature extraction for point cloud
+%     registration}\bibmark{[C]}\@. \bibbooktitle{International Conference on 3D
+%     Vision}\@, \bibaddress{virtual}\@, \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{241\thinspace{}\textnormal{--}\thinspace{}251}\@.
+  
+%   \bibitem{CoFiNet}
+%   \bibauthor{YU H\@, LI F\@, SALEH M, et~al}\@. \bibtitle{Cofinet: Reliable
+%     coarse-to-fine correspondences for robust pointcloud
+%     registration}\bibmark{[J]}\@. \bibjournal{Advances in Neural Information
+%     Processing Systems}\@, \bibyear{2021}\@,
+%     \bibvolume{34}\thinspace{}\textnormal{:
+%     }\bibpages{23872\thinspace{}\textnormal{--}\thinspace{}23884}\@.
+  
+%   \bibitem{Geometric}
+%   \bibauthor{QIN Z\@, YU H\@, WANG C, et~al}\@. \bibtitle{Geometric transformer
+%     for fast and robust point cloud registration}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{New Orleans, USA}\@,
+%     \bibyear{2022}\thinspace{}\textnormal{:
+%     }\bibpages{11133\thinspace{}\textnormal{--}\thinspace{}11142}\@.
+  
+%   \bibitem{Attention}
+%   \bibauthor{VASWANI A\@, SHAZEER N\@, PARMAR N, et~al}\@. \bibtitle{Attention is
+%     all you need}\bibmark{[J]}\@. \bibjournal{Advances in Neural Information
+%     Processing Systems}\@, \bibyear{2017}\@,
+%     \bibvolume{30}\thinspace{}\textnormal{:
+%     }\bibpages{5998\thinspace{}\textnormal{--}\thinspace{}6008}\@.
+  
+%   \bibitem{NMS}
+%   \bibauthor{LOWE D~G}\@. \bibtitle{Distinctive image features from
+%     scale-invariant keypoints}\bibmark{[J]}\@. \bibjournal{International Journal
+%     of Computer Vision}\@, \bibyear{2004}\@,
+%     \bibvolume{60}\bibnumber{(2)}\thinspace{}\textnormal{:
+%     }\bibpages{91\thinspace{}\textnormal{--}\thinspace{}110}\@.
+  
+%   \bibitem{Superglue}
+%   \bibauthor{SARLIN P-E\@, DETONE D\@, MALISIEWICZ T, et~al}\@.
+%     \bibtitle{Superglue: Learning feature matching with graph neural
+%     networks}\bibmark{[C]}\@. \bibbooktitle{IEEE/CVF Conference on Computer
+%     Vision and Pattern Recognition}\@, \bibaddress{Seattle, USA}\@,
+%     \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{4938\thinspace{}\textnormal{--}\thinspace{}4947}\@.
+  
+%   \bibitem{9156790}
+%   \bibauthor{VORA S\@, LANG A~H\@, HELOU B, et~al}\@. \bibtitle{PointPainting:
+%     Sequential fusion for 3D object detection}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibaddress{Seattle, USA}\@,
+%     \bibyear{2020}\thinspace{}\textnormal{:
+%     }\bibpages{4603\thinspace{}\textnormal{--}\thinspace{}4611}\@.
+  
+%   \bibitem{7780605}
+%   \bibauthor{CHEN X\@, KUNDU K\@, ZHANG Z, et~al}\@. \bibtitle{Monocular 3D
+%     object detection for autonomous driving}\bibmark{[C]}\@. \bibbooktitle{IEEE
+%     Conference on Computer Vision and Pattern Recognition}\@, \bibaddress{Las
+%     Vegas, USA}\@, \bibyear{2016}\thinspace{}\textnormal{:
+%     }\bibpages{2147\thinspace{}\textnormal{--}\thinspace{}2156}\@.
+  
+%   \bibitem{8100174}
+%   \bibauthor{CHEN X\@, MA H\@, WAN J, et~al}\@. \bibtitle{Multi-view 3D object
+%     detection network for autonomous driving}\bibmark{[C]}\@. \bibbooktitle{IEEE
+%     Conference on Computer Vision and Pattern Recognition}\@,
+%     \bibaddress{Honolulu, USA}\@, \bibyear{2017}\thinspace{}\textnormal{:
+%     }\bibpages{6526\thinspace{}\textnormal{--}\thinspace{}6534}\@.
+  
+%   \bibitem{8594049}
+%   \bibauthor{KU J\@, MOZIFIAN M\@, LEE J, et~al}\@. \bibtitle{Joint 3D proposal
+%     generation and object detection from view aggregation}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/RSJ International Conference on Intelligent Robots and
+%     Systems}\@, \bibaddress{Madrid, Spain}\@,
+%     \bibyear{2018}\thinspace{}\textnormal{:
+%     }\bibpages{1\thinspace{}\textnormal{--}\thinspace{}8}\@.
+  
+%   \bibitem{Deepfusion}
+%   \bibauthor{LI Y\@, YU A~W\@, MENG T, et~al}\@. \bibtitle{Deepfusion:
+%     Lidar-camera deep fusion for multi-modal 3d object detection}\bibmark{[C]}\@.
+%     \bibbooktitle{IEEE/CVF Conference on Computer Vision and Pattern
+%     Recognition}\@, \bibyear{2022}\thinspace{}\textnormal{:
+%     }\bibpages{17182\thinspace{}\textnormal{--}\thinspace{}17191}\@.
+  
+% \end{thebibliography}
+  
+    
+% \bibitem{ref1}
+% 中华人民共和国国家质量监督检验检疫总局,中国国家标准化管理委员会. 学位论文编写规则: GB/T 7713.1-2006[S]. 北京: 中国标准出版社, 2007: 17-20.
+
+% \bibitem{ref2}
+
+% 中华人民共和国国家质量监督检验检疫总局,中国国家标准化管理委员会. 科技报告编写规则: GB/T 7713.1-2014[S]. 北京: 中国标准出版社, 2007.
+
+% \bibitem{ref3}
+% 王晓琰, 殷建芳, 王晓峰, 等. 关于连续出版会议论文著录格式的探讨[J]. 学报编辑论丛, 2019: 162-165.
+
+% \bibitem{ref4}
+% WU D, YAN J, WANG H, et al. Social Attribute Aware Incentive Mechanism for Device-to-Device Video Distribution[J]. IEEE Transactions on Multimedia, 2017, 19(8): 1908-1920.
+
+% \bibitem{ref5}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref6}
+% 竺可桢. 物理学[M]. 北京: 科学出版社, 1973, 56-60.
+
+% \bibitem{ref7}
+% 国家技术监督局. 国际单位制及其应用: GB 3100-1993[S]. 北京: 中国标准出版社, 1994: 3-6.
+
+% \bibitem{ref8}
+% 王晓琰, 殷建芳, 王晓峰, 等. 关于连续出版会议论文著录格式的探讨[J]. 学报编辑论丛, 2019: 162-165.
+
+% \bibitem{ref9}
+% WU D, YAN J, WANG H, et al. Social Attribute Aware Incentive Mechanism for Device-to-Device Video Distribution[J]. IEEE Transactions on Multimedia, 2017, 19(8): 1908-1920.
+
+% \bibitem{ref10}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref111}
+% 国家技术监督局. 国际单位制及其应用: GB 3100-1993[S]. 北京: 中国标准出版社, 1994: 3-6.
+
+% \bibitem{ref11}
+% 竺可桢. 物理学[M]. 北京: 科学出版社, 1973, 56-60.
+
+% \bibitem{ref12}
+% 国家技术监督局. 国际单位制及其应用: GB 3100-1993[S]. 北京: 中国标准出版社, 1994: 3-6.
+
+% \bibitem{ref1122}
+% 竺可桢. 物理学[M]. 北京: 科学出版社, 1973, 56-60.
+
+% \bibitem{ref1133}
+% 竺可桢. 物理学[M]. 北京: 科学出版社, 1973, 56-60.
+
+% \bibitem{ref13}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref14}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref15}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref16}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+% \bibitem{ref17}
+% BAERGAMASCO F, ALBARELLI A, COSMO L, et al. Adopting an Unconstrained Ray Model in Light-Field Cameras for 3D Shape Reconstruction[C]. IEEE Conference on Computer Vision and Pattern Recognition, Boston, USA, 2015: 3003-3012.
+
+
+% \end{thebibliography}
+
+% \bibliographystyle{unsrt}
+\bibliographystyle{GBT7714-2005}
+
+
+% 此参考文献名为ref.bib文件
+%
+\bibliography{ref}
+\thispagestyle{others}
+
+
+
+
+
+\clearpage

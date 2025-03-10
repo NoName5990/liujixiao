@@ -1,0 +1,25 @@
+% \begin{table}[htbp]
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{10mm}
+    \bicaption[\xiaosi SAPL]{\wuhao 本章的主动学习方法与其他传统主动学习方法对比}{\wuhao  Comparison with other active learning methods}
+    \label{tab:3-5}
+    \wuhao
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        \textbf{数据集} & \textbf{方法} & \textbf{标注} & \textbf{结果} \\
+        \midrule
+        \multirow{4}{*}{SynLiDAR\(\to\)SemanticKITTI} & 
+        Random              & 0.1\%        & 53.2 \\
+        ~ & Entropy             & 0.1\%        & 51.7 \\
+        ~ & Margin              & 0.1\%        & \textbf{54.4} \\
+        ~ & Ours(SPAL)          & 0.1\%        & 53.5 \\
+        \multirow{4}{*}{SynLiDAR\(\to\)SemanticPOSS} & 
+        Random              & 0.1\%        & 47.5 \\
+        ~ & Entropy             & 0.1\%        & \textbf{51.4} \\
+        ~ & Margin              & 0.1\%        & 50.5 \\
+        ~ & Ours(SPAL)          & 0.1\%        & 50.7 \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}

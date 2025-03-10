@@ -1,0 +1,20 @@
+% \begin{table}[htbp]
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{10mm}
+    \bicaption[\xiaosi 本章的主动学习方法与其他传统主动学习方法在结合Mixing后的对比]{\wuhao 本章的主动学习方法与其他传统主动学习方法在结合Mixing后的对比}{\wuhao  Comparison with other active learning methods after integrating Mixing}
+    \label{tab:3-6}
+    \wuhao
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        \textbf{数据集} & \textbf{方法} & \textbf{标注} & \textbf{结果} \\
+        \midrule
+        \multirow{4}{*}{SynLiDAR\(\to\)SemanticKITTI}
+        & Random              & 0.1\%        & 51.1 \\
+        ~ & Entropy             & 0.1\%        & 55.1 \\
+        ~ & Margin              & 0.1\%        & 57.6 \\
+        ~ & Ours(SPAL)          & 0.1\%        & \textbf{58.7} \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}

@@ -1,0 +1,24 @@
+% \begin{table}[htbp]
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{12mm}
+    \bicaption[\xiaosi 第三章方法与其他域适应方法在SemanticKITTI\(\to\)nuScenes数据上的比较]{\wuhao 本方法与其他域适应方法在SemanticKITTI\(\to\)nuScenes数据上的比较}{\wuhao Comparison with other domain adaptation methods on SemanticKITTI\(\to\)nuScenes}
+    \label{tab:3-3}
+    \wuhao
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        \textbf{方法} & \textbf{域适应} & \textbf{标注} & \textbf{结果} \\
+        \midrule
+        Source-Only   & -       & -           & 33.7 \\
+        Target-Only   & -       & 100\%           & 82.7 \\
+        Mix3D         & UDA     & -   & 31.5 \\
+        CoSMix        & UDA     & -   & 29.8 \\
+        SN              & UDA   & -     & 25.8 \\
+        RayCast        & UDA    & -    & 30.9 \\
+        LiDOG        & UDA      & -       & 34.9 \\
+        Annotator     & ADA     & 0.1\%     & 75.9 \\
+        本章方法       & ADA    & 0.1\%      & \textbf{81.0(改)} \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}

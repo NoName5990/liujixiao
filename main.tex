@@ -8,6 +8,16 @@
 \usepackage{graphicx}
 \usepackage[ruled]{algorithm2e}
 \usepackage[normalem]{ulem}
+% % 自加宏宝
+% 图表标题居中显示
+\usepackage[justification=centering]{caption}
+% 使用①等符号
+\usepackage{pifont}
+
+
+
+
+
 % 输入配置文件，例如调用的宏包（公式，插图等）
 
 \input{latex_settings/custom-chinese}
@@ -27,7 +37,7 @@
 	
 % 封面页及扉页
 \pagestyle{empty}
-\input{my/coverpage}
+\input{ljx/coverpage}
 
 
 % 原创性声明
@@ -46,11 +56,11 @@
 %\pagestyle{plain}
 
 % 中文摘要页
-\input{my/abs-chinese}
+\input{ljx/abs-chinese}
 
 
 % 英文摘要页
-\input{my/abs-english}
+\input{ljx/abs-english}
 
 
 % 目录
@@ -91,19 +101,19 @@
 \renewcommand{\chaptermark}[1]{\markboth{第 \thechapter 章 \ #1}{}}
 
 % 第1章
-\include{my/1}
+\include{ljx/1}
 
 % 第2章
-\include{my/2}
+\include{ljx/2}
 
 % 第3章
-\include{my/3}
+\include{ljx/3}
 
 % 第4章
-\include{my/4}
+\include{ljx/4}
 
 % 第5章
-\include{my/5}
+\include{ljx/5}
 %如果要增加章节数请在此加项
 
 % \include{chapters/3}
@@ -113,7 +123,7 @@
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 
 %参考文献
-\include{my/reference}
+\include{ljx/reference}
 
 %如果没有附录请自行删除以下页面
 
@@ -127,10 +137,10 @@
 % \include{chapters/appdendixC}
 
 %作者简介
-\include{my/CV}
+\include{ljx/CV}
 
 % 致谢
-\include{my/thanks}
+\include{ljx/thanks}
 
 
 

@@ -1,0 +1,39 @@
+% \begin{table}[htbp]
+% 	\renewcommand{\arraystretch}{1}
+%     \centering
+%     \setlength{\tabcolsep}{2mm}
+%     \bicaption[\xiaosi 第三章方法与先进方法关于内点率的比较]{\wuhao 本方法与先进方法关于内点率的比较}{\wuhao Comparison of Inlier Ratio between this method and advanced methods}
+%     \label{tab:3-7}
+%     \wuhao
+%     \begin{tabular}{lccc}
+%         \toprule[1.5pt]
+%         \textbf{方法} & \textbf{主动学习(SPAL)} & \textbf{Mixing} & \textbf{结果} \\
+%         \midrule
+%         \multirow{4}{*}{SynLiDAR\(\to\)SemanticKITTI} &
+%           &            &           22.8\\
+%         ~ &      \checkmark &         & 50.7 \\
+%         ~ &              &  \checkmark        & running... \\
+%         ~ & \checkmark          & \checkmark        & \textbf{58.7} \\
+%         \bottomrule[1.5pt]
+%     \end{tabular}
+% \end{table}
+
+% \begin{table}[htbp]
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{8mm}
+    \bicaption[\xiaosi 第三章方法消融实验]{\wuhao 本章方法模块消融实验}{\wuhao Ablation experiments on modules}
+    \label{tab:3-7}
+    \wuhao
+    \begin{tabular}{ccc}
+        \toprule[1.5pt]
+        \textbf{主动学习(SPAL)} & \textbf{Mixing} & \textbf{结果} \\
+        \midrule
+          &             &                   22.8\\
+        \checkmark      &               &   50.7 \\
+                        &  \checkmark        & running \\
+         \checkmark          & \checkmark        & \textbf{58.7} \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}

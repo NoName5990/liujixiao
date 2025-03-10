@@ -1,0 +1,310 @@
+\chapter{点云配准相关理论}
+\thispagestyle{others}
+\pagestyle{others}
+\xiaosi
+
+\section{本章引言}
+首先，本章将对数字空间如何表示三维空间的物体及运动做出简要介绍，这是研究点云配准方法的前提。同时，当前点云配准方法与人工智能相关技术深度融合，因此本章将对深度神经网络作出必要介绍，这是研究点云配准方法的基础。之后，本章将介绍若干用于评估算法性能的公开数据集，包括合成数据集和真实场景数据集，这是验证点云配准算法的基础。最后，本章将对用于评价算法优劣的各项指标做出简要介绍。
+
+\section{刚体变换基础}
+    \subsection{表示形式}
+    \subsubsection{变换矩阵}
+    三维变换最常见的表示是变换矩阵，三维变换矩阵由旋转和平移两部分组成。首先在只考虑旋转变换的情况下，对于任意向量$\mathbf{a}$而言，已知它在两个单位正交基$\mathbf{(e_1,e_2,e_3)}$，$\mathbf{(e'_1,e'_2,e'_3)}$下的坐标分别是$(a_1,a_2,a_3)$，$(a'_1,a'_2,a'_3)$， 其中$\mathbf{(e'_1,e'_2,e'_3)}$由$\mathbf{(e_1,e_2,e_3)}$经过旋转得到。因为向量本身并没有发生变化，所以可以用公式(2-1)表示$\mathbf{a}$与$\mathbf{a'}$之间的关系：
+    \begin{equation}
+        \begin{bmatrix}
+            \mathbf{e_1},\mathbf{e_2},\mathbf{e_3}
+        \end{bmatrix}
+        \begin{bmatrix}
+            a_1 \\ a_2 \\ a_3
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            \mathbf{e'_1},\mathbf{e'_2},\mathbf{e'_3}
+        \end{bmatrix}
+        \begin{bmatrix}
+            a'_1 \\ a'_2 \\ a'_3
+        \end{bmatrix}
+    \end{equation}
+    对公式(2-1)的左右两边同时左乘$\mathbf{(e_1,e_2,e_3)}^\mathrm{T}$，将左边系数矩阵化简为单位矩阵可以得到公式(2-2)，它表示了坐标$(a_1,a_2,a_3)$与坐标$(a'_1,a'_2,a'_3)$之间的转换关系：
+    \begin{equation}
+        \begin{bmatrix}
+            a_1 \\ a_2 \\ a_3
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            \mathbf{e}^T_1 \mathbf{e}'_1 & \mathbf{e}^T_1 \mathbf{e}'_2 & \mathbf{e}^T_1 \mathbf{e}'_3\\
+            \mathbf{e}^T_2 \mathbf{e}'_1 & \mathbf{e}^T_2 \mathbf{e}'_2 & \mathbf{e}^T_2 \mathbf{e}'_3\\
+            \mathbf{e}^T_3 \mathbf{e}'_1 & \mathbf{e}^T_3 \mathbf{e}'_2 & \mathbf{e}^T_3 \mathbf{e}'_3\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            a'_1 \\ a'_2 \\ a'_3
+        \end{bmatrix}
+    \end{equation}
+    将公式(2-2)右边的系数矩阵称为旋转矩阵$\mathbf{R}$。旋转矩阵由两组基之间的内积组成，能够表示任意向量在旋转前后的坐标变化关系。可以注意到旋转矩阵是正交矩阵，因此上述旋转变换的逆变换可由公式(2-3)表示：
+    \begin{equation}
+        \mathbf{a'} = \mathbf{R}^{-1}\mathbf{a} = \mathbf{R}^{\mathrm{T}}\mathbf{a}
+    \end{equation}
+    为了更准确的描述刚体在三维空间中的运动，现在将平移分量$\mathbf{t}$引入进来，公式(2-4)表示了物体的旋转和平移过程：
+    \begin{equation}
+        \mathbf{
+        a = R a' + t
+        }
+    \end{equation}
+    公式(2-4)虽然能够准确的表示刚体在三维空间中的单次运动变换，但是当需要连续表示多次变换时往往就会包含多个括号并显得不够简洁。故引入齐次坐标和变换矩阵，公式(2-4)的齐次表达式为公式(2-5)：
+    \begin{equation}
+        \mathbf{
+        \begin{bmatrix}
+            \mathbf{a} \\ 1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            \mathbf{R}   & \mathbf{t}\\
+            0^\mathrm{T} & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            \mathbf{a'} \\ 1
+        \end{bmatrix}
+        }
+    \end{equation}
+    公式(2-5)等式左边第一个矩阵被定义为变换矩阵$\mathbf{Trans}$，它主要由表示旋转的旋转矩阵$\mathbf{R}$和表示平移的平移向量$\mathbf{t}$两部分组成。\par
+    变换矩阵虽然能够精确的表示刚体在三维空间中的运动，但是这种表现形式也存在着某些局限性：（1）对于旋转矩阵而言，需要有9个变量描述物体在三维空间中的旋转，而旋转只存在3个自由度；对变换矩阵而言，则需要16变量表示物体的旋转和平移，即使这些运动只存在6个自由度。因此，以变换矩阵来表示物体在三维空间中的运动是冗余的，这也引出旋转矩阵的另一个局限性；（2）变换矩阵变量之间存在约束关系，由上述公式(2-2)可以看到变换矩阵的旋转矩阵部分是一个行列式为1的正交矩阵。这种约束关系对于变换矩阵的计算求解和优化而言会使得问题变得麻烦复杂。
+
+    \subsubsection{旋转向量}
+    旋转向量是表示刚体在三维空间中运动的另一种常见形式。它通过两个变量将三维空间中的旋转参数化，单位向量$\mathbf{n}$表示旋转轴的方向，角度$\theta$描述围绕旋转轴的旋转幅度。通过罗格里格斯公式可以完成旋转向量和变换矩阵之间的转化。对于任意向量$\mathbf{v}$绕单位向量$\mathbf{n}$旋转$\theta$角度后得到$\mathbf{v'}$。可以将向量$\mathbf{v}$相对于$\mathbf{n}$分解成平行分量$\mathbf{v_\parallel}$和垂直分量$\mathbf{v_\perp}$，由公式(2-6)表示：
+    \begin{equation}
+        \mathbf{
+        v = v_\parallel + v_\perp
+        }
+    \end{equation}
+    式中，平行分量$\mathbf{v_\parallel}$和垂直分量$\mathbf{v_\perp}$分别可以用公式(2-7)和公式(2-8)表示：
+    \begin{equation}
+        \mathbf{
+        v_\parallel = (v \cdot n)n
+        }
+    \end{equation}
+    \begin{equation}
+        \mathbf{
+        v_\perp = v - v_\parallel = v - (v \cdot n)n = -n\times(n\times v)
+        }
+    \end{equation}
+    根据投影关系可以得到$\mathbf{v'}$和$\mathbf{v}$的平行分量和垂直分量之间的关系，分别用公式(2-9)和公式(2-10)表示：
+    \begin{equation}
+        \mathbf{v'_\parallel} = \mathbf{v_\parallel},
+    \end{equation}
+    \begin{equation}
+        \mathbf{v'_\perp}=cos(\theta) \mathbf{v_\perp} + sin(\theta)\mathbf{n}\times \mathbf{v_\perp}
+    \end{equation}
+    又因为$\mathbf{n}$与$\mathbf{v'}$平行，因此可以进一步得到公式(2-11)：
+    \begin{equation}
+        \mathbf{
+        n\times v_\perp = n\times(v-v_\parallel)= n\times v - n\times v_\parallel = n\times v
+        }
+    \end{equation}
+    将公式(2-11)代入公式(2-10)可知公式(2-12)：
+    \begin{equation}
+        \mathbf{v'_\perp}=cos(\theta) \mathbf{v_\perp} + sin(\theta)\mathbf{n}\times \mathbf{v}
+    \end{equation}
+    进而$\mathbf{v'}$可由公式(2-13)表示：
+    \begin{equation}
+        \begin{aligned}
+        \mathbf{v'}
+    &    =\mathbf{v_\parallel} + cos(\theta)\mathbf{v_\perp} + sin(\theta)\mathbf{n}\times \mathbf{v}\\
+    &    =\mathbf{v_\parallel} + cos(\theta)\mathbf{(v-v_\perp)} + sin(\theta)\mathbf{n\times v} \\
+    &    =cos(\theta)\mathbf{v} + (1-cos(\theta))\mathbf{v_\perp} + sin(\theta)\mathbf{n\times v}\\
+    &    =cos(\theta)\mathbf{v} + (1-cos(\theta))\mathbf{(n\cdot v)n} + sin(\theta)\mathbf{n\times v}
+        \end{aligned}
+    \end{equation}
+    将公式(2-13)重新组合并化简可得到最终旋转向量与变换矩阵之间的关系，可以得到公式(2-14)：
+    \begin{equation}
+        \mathbf{T} = cos(\theta)\mathbf{I} + (1-cos(\theta))\mathbf{n}\mathbf{n}^\mathrm{T} + sin(\theta)\mathbf{n}^\land
+    \end{equation}
+
+    \subsubsection{四元数}
+    与变换矩阵和旋转向量相比，单位四元数是一种更加紧凑、高效且数值稳定的描述刚体在三维空间运动变换的表达形式。虽然，它并不直观，并且由于三角函数的周期性，不同的旋转角度可能会编码为相同的四元数。但是只要将其弧度限制在$[0,2\pi]$，四元数不失为一种良好的形式。单位四元数可以通过引入抽象符号$\mathbf{i,j,k}$来定义，它们满足规则$\mathbf{i^2=j^2=k^2=ijk=}-1$，同时满足除乘法交换律以外的常用代数规则。
+    设$v=[0,\mathbf{v}], u=[0,\mathbf{u}]$,易得公式(2-15)与公式(2-16)：
+    \begin{equation}
+        vu=[-\mathbf{v}\cdot \mathbf{u}, \mathbf{v}\times \mathbf{u}],
+    \end{equation}
+    \begin{equation}
+        uv_\perp= [-\mathbf{u}\cdot \mathbf{v}_\perp, \mathbf{u}\times \mathbf{v}_\perp]
+    \end{equation}
+    又因为$\mathbf{v_\perp}$与$\mathbf{u}$正交，所以$\mathbf{u}\cdot \mathbf{v_\perp}=0$，将之带入公式(2-16)，可得公式(2-17)：
+    \begin{equation}
+        uv_\perp= [0, \mathbf{u}\times \mathbf{v}_\perp] = \mathbf{u}\times \mathbf{v}_\perp
+    \end{equation}
+    进一步可得到公式(2-18)：
+    \begin{equation}
+        \begin{aligned}
+        v'_\perp 
+    &= cos(\theta) v_\perp + sin(\theta)(uv_\perp)\\
+    &=(cos(\theta)+sin(\theta)u)v_\perp
+        \end{aligned}
+    \end{equation}
+    令$q=cos(\theta)+sin(\theta)u$，可得$v'_\perp=qv_\perp$，令$q=p^2$，有$p=[cos(0.5\theta),sin(0.5\theta)\mathbf{u}]$。又因为$qq^{-1}=qq^*=1,qv_\parallel=v_\parallel q, qv_\perp= v_\perp q^*$，将其带入公式(2-13)可得公式(2-19)：
+    \begin{equation}
+        v' = pvp^*=pvp^{-1}
+    \end{equation}
+
+    \subsection{变换矩阵求解}
+    对于基于对应关系的点云配准方法而言，在得到源点云和目标点云之间的点对应关系之后，需要将这种点的对应关系转化成点云之间的变换矩阵，以得到的最终的配准结果。由于本文在不同阶段利用了奇异值分解法（SVD）和随机一致性估计法（RANSAC），本节将对这两种方法进行介绍。\par
+
+    \subsubsection{奇异值分解法}
+    设集合$\mathcal{C}=\{(\mathbf{p}_i,\mathbf{q}_i)|i=1,...,n\}$，其中$\mathbf{p}_i$是源点云$\mathcal{P}$中与目标点云$\mathcal{Q}$中的$\mathbf{q}_i$点相对应的点。在已知所有对应点的对应关系$\mathcal{C}$后，目标点云与源点云之间的变换问题可以表示成公式(2-20)：
+    \begin{equation}
+        \mathbf{R},\mathbf{t} = \mathrm{argmin} \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in \mathcal{C}}  \Vert \mathbf{q}_i-(\mathbf{R}\cdot \mathbf{p}_i + \mathbf{t}) \Vert^2
+    \end{equation}
+    对公式(2-20)右边求导并令其等于0有公式(2-21)：
+    \begin{equation}
+        \begin{aligned}
+        0 
+        &= \sum_{i=1}^{n} 2(\mathbf{R} \mathbf{p}_i + \mathbf{t} - \mathbf{q}_i) \\
+        &= 2n\mathbf{t} + 2\mathbf{R} (\sum_{i=1}^n \mathbf{p}_i) - 2\sum_{i=1}^n \mathbf{q}_i
+        \end{aligned}   
+    \end{equation}
+    公式(2-21)左右边同时除以$n$并化简可以得到公式(2-22)：
+    \begin{equation}
+        \begin{aligned}
+        0 
+        &= 2\mathbf{t} + \frac{2\mathbf{R}(\sum_{i=1}^n \mathbf{p}_i)}{n} -\frac{2\sum_{i=1}^n \mathbf{q}_i}{n}
+        &= 2\mathbf{t} + 2\mathbf{R}\mathbf{\bar{p}} -2\mathbf{\bar{q}}
+        \end{aligned}   
+    \end{equation}
+    式中，$\mathbf{\bar{p}}$和$\mathbf{\bar{q}}$分别是源点云和目标点云的形心。将公式(2-22)化简可得：
+    \begin{equation}
+        \mathbf{t} = \mathbf{\bar{q}} - \mathbf{R}\mathbf{\bar{p}}
+    \end{equation}
+    将公式(2-23)带入(2-20)可知公式(2-24)：
+    \begin{equation}
+        \begin{aligned}
+        \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in \mathcal{C}}  \Vert \mathbf{q}_i-(\mathbf{R}\cdot \mathbf{p}_i + \mathbf{t}) \Vert^2
+        &=
+        \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in \mathcal{C}}  \Vert (\mathbf{q}_i-\mathbf{\bar{q}})-\mathbf{R}(\mathbf{p}_i-\mathbf{\bar{p}}) \Vert^2\\
+        &= 
+        \sum \Vert \mathbf{R}\mathbf{p}'_i-\mathbf{q}'_i \Vert^2
+        \end{aligned}
+    \end{equation}
+    根据矩阵Frobenius范数（F-范数）的定义，矩阵F-范数的平方可以转化成矩阵的内积形式，进而得到矩阵迹的表达形式，然后再带入公式(2-24)化简得到公式(2-25)：
+    \begin{equation}
+        \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in \mathcal{C}}  \Vert \mathbf{R}\mathbf{p}'_i-\mathbf{q}'_i \Vert^2
+        =
+        {\mathbf{p}'_i}^{\mathrm{T}} \mathbf{R}^{\mathrm{T}} \mathbf{R} \mathbf{p}'_i - {\mathbf{q}'}^{\mathrm{T}} \mathbf{R} \mathbf{p}'_i - {\mathbf{p}'}^{\mathrm{T}} \mathbf{R}^\mathrm{T} \mathbf{q}'_i + {\mathbf{q}'_i}^\mathrm{T} \mathbf{q}'_i
+    \end{equation}
+    又因为$\mathbf{R}$是正交矩阵且${\mathbf{q}'_i}^\mathrm{T} \mathbf{R} \mathbf{p}'_i = ({\mathbf{q}'_i}^T \mathbf{R} \mathbf{p}'_i)^\mathrm{T} = {\mathbf{p}'_i}^\mathrm{T} \mathbf{R}^\mathrm{T} \mathbf{q}'_i$，所以公式(2-25)可化简为公式(2-26)：
+    \begin{equation}
+        \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in \mathcal{C}}  \Vert \mathbf{R}\mathbf{p}'_i-\mathbf{q}'_i \Vert^2
+        =
+        {\mathbf{p}'_i}^\mathrm{T} \mathbf{p}'_i - 2 {\mathbf{q}'}^\mathrm{T} \mathbf{R} \mathbf{p}'_i + {\mathbf{q}'_i}^\mathrm{T} \mathbf{q}'_i
+    \end{equation}
+    将公式(2-26)代入公式(2-24)并化简有公式(2-27)：
+    \begin{equation}
+        \mathbf{R}
+        = 
+        \mathrm{argmin}(\sum_{i=1}^n {\mathbf{p}'_i}^\mathrm{T} \mathbf{p}'_i - \sum_{i=1}^{n} 2{\mathbf{q}'_i}^\mathrm{T} \mathbf{R} \mathbf{p}'_i + \sum_{i=1}^n {\mathbf{q}'_i}^\mathrm{T} \mathbf{q}'_i)
+    \end{equation}
+    又因为$\sum_{i=1}^n {p'_i}^T p'_i$ 和$\sum_{i=1}^n {q'_i}^T q'_i$对旋转矩阵$\mathbf{R}$求导恒等于0，故可是公式(2-28)：
+    \begin{equation}
+        \mathbf{R}
+        = 
+        \mathrm{argmin}(\sum_{i=1}^n {\mathbf{q}'_i}^T \mathbf{R} \mathbf{p}'_i)
+        =
+        \mathrm{argmin}(tr(\mathbf{R} \mathbf{P}' \mathbf{Q}'^{T}))
+    \end{equation}
+    记矩阵$\mathbf{S}=\mathbf{P}' \mathbf{Q}'^{T}$，对之进行奇异值分解可得公式(2-29)：
+    \begin{equation}
+        \mathbf{S} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+    \end{equation}
+    式中，$\mathbf{U}$和$\mathbf{V}$是$n\times3$阶酉矩阵，$\mathbf{\Sigma}$是$3\times 3$阶半正定对角矩阵，且其对角线上的元素是$\mathbf{S}$的奇异值。
+    将公式(2-29)带入公式(2-28)有公式(2-30)：
+    \begin{equation}
+        \mathbf{R}
+        = 
+        \mathrm{argmin}(tr(\mathbf{R} \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T))
+        =
+        \mathrm{argmin}(tr(\mathbf{\Sigma} \mathbf{V}^T \mathbf{R} \mathbf{U}))
+    \end{equation}
+    又因为$\mathbf{V},\mathbf{R},\mathbf{U}$均为正交矩阵，因此$\mathbf{V}^T \mathbf{R} \mathbf{U}$也为正交阵，又因为正交阵每个元素的绝对值小于等于1，奇异值大于等于0，因此上式当且仅当对角线上的元素均为1时取最大值，可以得到公式(2-31)：
+    \begin{equation}
+        \mathbf{R} = \mathbf{V} \mathbf{U}^T
+    \end{equation}
+    将公式(2-31)带入公式(2-23)可以得到$\mathbf{t}$的解：
+    \begin{equation}
+        \mathbf{t} = \mathbf{\bar{q}} - \mathbf{V} \mathbf{U}^T \mathbf{\bar{p}}
+    \end{equation}
+
+    \subsubsection{随机一致性估计法}
+    随机一致性估计是一种迭代方法，用于从一组包含离群值的观察数据中利用随机抽样来估计数学模型的参数。它是一种非确定性算法，它仅以一定的概率产生正确的结果，并且随着迭代次数的增加，产生正确结果概率也会随之增加。使用RANSAC方法从一组包含离群值的对应关系中估计出集合所对应的变换矩阵，具体流程如下：\par
+    （1）从源点云和目标点云之间的点的对应关系集合$\mathcal{C}$中选取距离大于阈值的三对点对应。\par
+    （2）利用三对点对应关系求解变换矩阵$\mathbf{T}_i$\par
+    （3）将变换矩阵$\mathbf{T}_i$应用至源点云，并计算变换后的源点云与目标点云之间所有对应点的距离之和，记为该次估计的误差。\par
+    不断重复上述三个步骤直至满足迭代次数要求，选取出误差最小的变换矩阵$\mathbf{T}$作为最终的估计结果，其中参数迭代次数$k$主要由内点率$w$确定。假设3对点对应的选择是独立同分布的，那么在一次选择中3对对应关系均正确的的概率为$w^3$。所以一次选择中至少存在一个异常对应的概率为$1-w^3$，这意味着估计出错误的变换矩阵的概率。在经过$k$次估计之后，在这$k$次预测中至少存在一次成功估计的概率为：
+    \begin{equation}
+        p =1 - (1-w^3)^k
+    \end{equation}
+    化简公式(2-33)，那么可以得出公式(2-34)表示$k$：
+    \begin{equation}
+        k = \frac{log(1-p)}{log(1-w^3)}
+    \end{equation}\par
+    RANSAC 的一个优点是它能够对模型参数进行鲁棒估计 ，即使存在大量异常值的情况下，它也可以高精度地估计变换矩阵。RANSAC的一个缺点是计算这些参数所需的时间没有上限。当计算的迭代次数有限时，获得的解决方案可能不是最优的，甚至可能无法良好拟合数据。
+
+\section{卷积神经网络}
+卷积神经网络，它的输入层和输出层之间存在多个非线性映射的隐藏层。通过若干非线性映射的隐藏层的叠加，深度神经网络能过够有效的拟合任意的函数，能够对真实世界的问题进行数学建模。通过计算输出层产生的结果与实际结果之间的差距，并最小化数据集的整体差距，网络能够以反向传播的方式优化整个网络的参数并完成网络的整体训练。当前，卷积神经网络主要由卷积层、全连接层、激活函数和池化层等一些基本结构组成。同时，无论是在2维图像领域还是在3D点云领域，关注像素或者点之间的上下文关系的注意力机制已经被广泛应用。综上，本节将逐一介绍相关基本结构。\par
+（1）卷积层\par
+卷积层指的是使用预先固定尺寸的卷积核与输入特征进行卷积滤波操作的网络结构，整个输入共享同一组卷积核，卷积核通过在输入特征上进行滑窗操作以遍历整个输入特征。卷积层主要由如下参数：卷积核个数、卷积核尺寸和卷积步长。卷积核个数决定卷积层输出特征的维度，而卷积核尺寸决定该层卷积的感受野大小，卷积步长决定滑窗操作的步长。
+
+（2）全连接层\par
+全连接层指的是将来自上一层的所有输入都连接到下一层的每一个激活单元的网络结构，下一层输出的特征的每一个特征值均为上一层的全部特征通过权重加权以及添加偏移值之后得到。
+在常见的二维图像处理任务中，全连接层常被应用于网络结构的最后几层，它将之前的网络结构提取的数据特征进行降维或升维以形成最终输出；在常见的三维图形任务中，全连接层常被用于直接特征提取或是作为基本模块来提取三维图形输入的局部特征。
+
+（3）激活函数\par
+激活函数是穿插在多层全连接层或卷积层之间的关键函数。如果不存在激活函数，那么多层全连接层或卷积层的叠加与一层全连接层或者卷积层的效果是一样的。主要原因是失去了激活函数的非线性映射能力，多层线性映射的叠加本质上就是一层线性映射。因此在深度神经网络中激活函数是不可或缺的，同时，设计更加有效的激活函数也是深度神经网络的关键。当前，研究领域主要采用的激活函数包括：Sigmoid、Tanh、ReLU、Leaky ReLU和ELU等。
+
+（4）注意力机制\par
+在现实世界当中，通过眼睛我们可以观察到各种各样的事物，从而能够感知到大量的信息。此外，因为我们具备对信息进行筛选的能力，所以可以根据实际情况来选择重要的信息，而忽略不重要的信息，以避免受海量信息的干扰。从这一角度出发，深度学习研究者希望网络也能够具备与我们相同的能力，所以在网络当中引入了注意力机制。通过注意力机制的方式，网络可以对输入特征进行加权之后再输出，以希望网络对重要的特征给较大的权重，对不太重要的特征给较小的权重，使得网络具备了对特征进行筛选的能力。
+
+\section{数据集介绍}
+本节将介绍用于三维点云配准的标准数据集。在评估不同指标的性能时，数据集必不可少。配准任务的点云数据集可以分为合成数据集和真实场景数据集。合成数据集中的对象是完整的，不存在任何遮挡以及无关背景的干扰。真实场景数据集包括室内场景数据集和室外场景数据集，可以通过激光雷达直接获取，或者通过RGB-G相机获取的深度图通过三维成像得到。室外场景数据集专为自动驾驶而设计，其中的对象在空间上的分离性好，并且点云数据分布均匀。当前常见的用于点云配准的数据集包括：ModelNet40、3DMatch和KITTI。\par
+
+（1）ModelNet40\par
+普林斯顿大学提出的ModelNet40数据集包含来自40个类别的12311个对齐CAD模型，其中有80\%共9843个数据用作训练，剩余20\%的数据用于测试。ModelNet40数据集包含40个类别的三维模型，其中既有桌子、花瓶、飞机这样具有规则对称结构的点云，也有吉他、花、人这样结构复杂的点云。ModelNet40数据集旨在维计算机视觉、机器人自动化领域和认知科学领域的研究人员提供大规模的三维物体模型。
+
+（2）3DMatch\par
+3DMatch数据集包含62个不同场景的RGB-D数据。每个场景被分成几个片段，每个片段使用TSDF融合算法从50个深度图中重建三维点云。最终整个数据集有54个场景用于训练，8个场景用于测试。
+
+（3）KITTI\par
+KITTI数据集最初设计用于立体匹配性能评估，包括立体序列、激光雷达点云和地面真实姿态。数据集包含10条完整采集轨迹，市中心的交通、住宅区，以及德国卡尔斯鲁厄周围的高速公路场景和乡村道路，共标注 28 个类，包括区分非移动对象和移动对象的类，即地面、建筑、车、人、物体等大类。原始数据包括22个序列组成，序列00到10作为训练集共23201个数据，11到21作为测试集共20351个数据。
+
+\section{评价指标}
+根据点云配准方法的基本步骤，为了评估点云配准不同阶段性能因采取不同的评价指标。同时，针对不同数据集的特点不同，在某些评价方式上也存在些许差异。本节将介绍针对特征提取的评价指标和针对刚体运动估计的评价指标两大类指标进行介绍。其中，针对特征提取的评价指标包括内点率（IR），特征匹配召回率（FMR）和匹配召回率（RR）；针对刚体运动估计的评价指标包括均方根误差（RMSE）和相对平移误差（RTE）、相对旋转误差（RRE）。
+
+（1）内点率（Inlier Ratio，IR）测量通过网络预测的假定点对应集合中正确对应所占的比例。所谓正确对应，即源点云中的点经过真实变换运动后，与目标点云中的对应点的距离小于某一阈值$\tau_1$。给定源点云$\mathcal{P}$和目标点云$\mathcal{Q}$的待评价的对应集合$\mathcal{C}$，内点率的数学表达式为公式(2-36)：
+\begin{equation}
+    \mathrm{IR}(\mathcal{C}) = \frac{1}{ |\mathcal{C}|} \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in  \mathcal{C}} [\Vert  \mathbf{\bar{T}}_\mathcal{P}^\mathcal{Q}\mathbf{p}_i -\mathbf{q}_i \Vert_2 < \tau_1]
+\end{equation}
+式中，$\mathbf{\bar{T}}_\mathcal{P}^\mathcal{Q}$表示源点云与目标点云的之间的真实变换矩阵，$\mathbf{p}_i$和$\mathbf{q}_i$是一对对应点。
+
+（2）特征匹配召回率（Feature Matching Recall，FMR）测量的是内点率大于某一阈值$\tau_2$的点云对的比例。它表明了整个数据集中可以通过鲁棒姿态估计器RANSAC恢复两个点云之间的变换矩阵的点云对的比例。给定一个数据集的所有测试集的点云对集合$\mathcal{D}$，特征匹配召回可以用公式(2-37)表示：
+\begin{equation}
+    \mathrm{FMR} = \frac{1}{|\mathcal{D}|} \sum_{\mathcal{D}} [\Vert  \mathrm{IR}> \tau_2]
+\end{equation}
+
+（3）均方根误差（Root Mean Square Error，RMSE）与配准召回率（Registration Recall，RR）与上述度量对应关系质量的指标不同，RR直接度量点云配准目标任务的性能。它测量的是均方根误差在某一阈值$\tau_3$内的点云对的比例。给定一个数据集的所有测试集的点云对集合$\mathcal{D}$，配准召回定义为公式(2-38)：
+\begin{equation}
+    \mathrm{RR} = \frac{1}{ |\mathcal{D}|} \sum_{\mathcal{D}} [\Vert  \mathrm{RMSE} < \tau_3]
+\end{equation}
+式中，$\mathrm{RMSE}$由公式(2-39)表示为：
+\begin{equation}
+    \mathrm{RMSE} = \sqrt{\frac{1}{|\mathcal{C}|} \sum_{(\mathbf{p}_i,\mathbf{q}_i)\in  \mathcal{C}} \Vert \mathbf{T}_\mathcal{P}^\mathcal{Q}(\mathbf{p}_i)-\mathbf{q}_i \Vert^2}
+\end{equation}
+
+（4）相对平移误差（RTE）和相对旋转误差（RRE）\par
+相对平移和旋转误差（RTE/RRE）测量与真实变换矩阵之间的偏差。给定预测的变换$\mathbf{T}_\mathbf{P}$，其平移向量和旋转矩阵分别是$\mathbf{t}$和$\mathbf{R}$。其相对平移误差（RTE）和相对旋转误差（RRE）相对于真实位姿$\mathbf{T}_\mathcal{P}^\mathcal{Q}$的表示分别为公式(2-40)，公式(2-41)：
+\begin{equation}
+        \mathrm{RTE} = || \mathbf{t} - \mathbf{\bar{t}} ||
+\end{equation}
+\begin{equation}
+        \mathrm{RRE} = arccos(\frac{tr(\mathbf{R}^T \mathbf{\bar{R}})-1}{2})
+\end{equation}
+式中，$\mathbf{\bar{t}}$与$\mathbf{\bar{R}}$分别是$\mathbf{T}_\mathcal{P}^\mathcal{Q}$中真实的平移分量和旋转分量。
+
+\section{本章小结}
+本章主要介绍了点云配准方法中所用到的相关技术的基础知识。首先介绍了三维空间中的物体运动在数字空间中的三种表现形式以及在已知对应关系的条件下求解变换矩阵的常见的两种方法。接下来介绍了对本文将要使用的深度神经网络的基础知识做了简要介绍。然后介绍了常见的用于评估点云配准算法性能的数据集，包括合成数据集与真是数据集，室内数据集与室外数据集。最后介绍了点云配准方法研究中常使用的几种评价指标，分别是内点率、特征匹配召回率、均方根误差与配准召回率以及相对平移误差和相对旋转误差。
