@@ -1,0 +1,18 @@
+\begin{table}[H]
+	\renewcommand{\arraystretch}{1}
+    \centering
+    \setlength{\tabcolsep}{8mm}
+    \bicaption[\xiaosi 第四章方法消融实验]{\wuhao 本章方法模块消融实验}{\wuhao Ablation experiments on modules}
+    \label{tab:4-7}
+    \wuhao
+    \begin{tabular}{cccc}
+        \toprule[1.5pt]
+        \textbf{SPAL} & \textbf{STNB} & \textbf{CBAM} & \textbf{结果} \\
+        \midrule
+          & & & 22.84 \\
+          \checkmark  & & & 58.70 \\
+          \checkmark  & \checkmark & & 65.46 \\
+          \checkmark  & \checkmark & \checkmark & \textbf{65.51} \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
