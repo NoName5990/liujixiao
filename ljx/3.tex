@@ -221,7 +221,7 @@
 \subsubsection{实验设置}
 在实验中，使用MinkowskiNet\upcite{MinkowskiNet}在Annotator中的PyTorch实现版本作为目标分割网络模型，并使用随机梯度下降(SGD)\upcite{SGD}作为学习优化器，动量为0.01，权重衰减系数为0.0001，在第一轮训练中使用线性预热，将学习率线性增加到基础学习率0.01，并使用初始学习率为0.01的余弦衰减调度器动态调整学习率。所有实验都在单张NVIDIA RTX A6000 GPU上进行训练。本章方法在真实到真实以及合成到真实的跨域场景下分别进行了实验。对于所有的场景，主动学习全程总共执行5次迭代并达到预设标注预算。
 在合成到真实的跨域场景实验中，预训练模型(Source-only)和全监督模型(Target-only)阶段的批量大小设为16；在SynLiDAR$\to$SemanticKITTI实验中训练10轮，在SynLiDAR$\to$SemanticPOSS实验中训练20轮。而在域适应阶段，每一步的批量大小设为14并训练50轮。权重参数$\alpha$分别在SynLiDAR$\to$ SemanticKITTI和SynLiDAR$\to$SemanticPOSS的实验中设置为0.4和0.6。
-在真实到真实的跨域场景实验中，SemanticKITTI$\to$nuScenes和nuScenes$\to$SemanticKITTI的实验配置相同，预训练模型(Source-only)和全监督模型(Target-only)阶段的每一步批量大小设为16，并训练10轮；在域适应阶段的每一步批量大小设置为10并训练50轮，权重参数$\alpha$为0.6。
+在真实到真实的跨域场景实验中，SemanticKITTI$\to$nuScenes和nuScenes$\to$SemanticKITTI的实验配置相同，预训练模型Source-only和全监督模型Target-only阶段的每一步批量大小设为16，并训练10轮；在域适应阶段的每一步批量大小设置为10并训练50轮，权重参数$\alpha$为0.6。
 \subsection{实验结果}
 为了证明本章方法的有效性，分别在合成到真实和真实到真实这两个跨域场景下，对四个数据集进行了实验。随后，通过可视化手段对实验结果进行展示，从而更直观地呈现所提出方法在不同场景中的具体效果。
 \subsubsection{合成到真实场景}
