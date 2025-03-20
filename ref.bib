@@ -173,6 +173,7 @@
   address={Montreal, Canada}}
 
 % 2017CVPR
+//28
 @INPROCEEDINGS{PointNet,
   author={Charles, R. Qi and Su, Hao and Kaichun, Mo and Guibas, Leonidas J.},
   booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition}, 
@@ -181,7 +182,7 @@
   pages={77-85},
   publisher={IEEE},
   address={Honolulu, USA}}
-
+//29
 @article{PointNet++,
   title={Pointnet++: Deep hierarchical feature learning on point sets in a metric space},
   author={Qi, Ruizhongtai and Yi, Li and Su, Hao and Guibas, Leonidas J},
@@ -224,7 +225,7 @@
   year={2019},
   publisher={ACM New York, NY, USA}
 }
-
+// 30
 % 2019ICCV
 @INPROCEEDINGS{KPConv,
   author={Thomas, Hugues and Qi, Charles R. and Deschaud, Jean-Emmanuel and Marcotegui, Beatriz and Goulette, François and Guibas, Leonidas},
@@ -234,7 +235,22 @@
   pages={6410-6419},
   publisher={IEEE},
   address={Seoul, Korea}}
-
+//31
+@article{li2018pointcnn,
+  title={Pointcnn: Convolution on x-transformed points},
+  author={Li, Yangyan and Bu, Rui and Sun, Mingchao and Wu, Wei and Di, Xinhan and Chen, Baoquan},
+  journal={Advances in neural information processing systems},
+  volume={31},
+  year={2018}
+}
+//32
+@inproceedings{wu2019pointconv,
+  title={Pointconv: Deep convolutional networks on 3d point clouds},
+  author={Wu, Wenxuan and Qi, Zhongang and Fuxin, Li},
+  booktitle={Proceedings of the IEEE/CVF Conference on computer vision and pattern recognition},
+  pages={9621--9630},
+  year={2019}
+}
 % 2017CVPR
 @INPROCEEDINGS{3DMatch,
   author={Zeng, Andy and Song, Shuran and Nießner, Matthias and Fisher, Matthew and Xiao, Jianxiong and Funkhouser, Thomas},
@@ -402,14 +418,7 @@
     pages={3438-3445} 
 }
 
-% @article{CoFiNet,
-%   title={Cofinet: Reliable coarse-to-fine correspondences for robust pointcloud registration},
-%   author={Yu, Hao and Li, Fu and Saleh, Mahdi and Busam, Benjamin and Ilic, Slobodan},
-%   journal={Advances in Neural Information Processing Systems},
-%   volume={34},
-%   pages={23872-23884},
-%   year={2021}
-% }
+
 @inproceedings{CoFiNet,
  author = {Yu, Hao and Li, Fu and Saleh, Mahdi and Busam, Benjamin and Ilic, Slobodan},
  booktitle = {Advances in Neural Information Processing Systems},
@@ -824,14 +833,8 @@
   pages={9297--9307},
   year={2019}
 }
-@inproceedings{caesar2020nuscenes,
-  title={nuscenes: A multimodal dataset for autonomous driving},
-  author={Caesar, Holger and Bankiti, Varun and Lang, Alex H and Vora, Sourabh and Liong, Venice Erin and Xu, Qiang and Krishnan, Anush and Pan, Yu and Baldan, Giancarlo and Beijbom, Oscar},
-  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
-  pages={11621--11631},
-  year={2020}
-}
-% kitti following 4
+
+//60
 @inproceedings{saltori2022cosmix,
   title={Cosmix: Compositional semantic mix for domain adaptation in 3d lidar segmentation},
   author={Saltori, Cristiano and Galasso, Fabio and Fiameni, Giuseppe and Sebe, Nicu and Ricci, Elisa and Poiesi, Fabio},
@@ -839,6 +842,24 @@
   pages={586--602},
   year={2022},
   organization={Springer}
+}
+//61
+@inproceedings{ding2022doda,
+  title={Doda: Data-oriented sim-to-real domain adaptation for 3d semantic segmentation},
+  author={Ding, Runyu and Yang, Jihan and Jiang, Li and Qi, Xiaojuan},
+  booktitle={European Conference on Computer Vision},
+  pages={284--303},
+  year={2022},
+  organization={Springer}
+}
+//62
+@inproceedings{bian2022unsupervised,
+  title={Unsupervised domain adaptation for point cloud semantic segmentation via graph matching},
+  author={Bian, Yikai and Hui, Le and Qian, Jianjun and Xie, Jin},
+  booktitle={2022 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={9899--9904},
+  year={2022},
+  organization={IEEE}
 }
 @article{xiao2022polarmix,
   title={Polarmix: A general data augmentation technique for lidar point clouds},
@@ -848,7 +869,7 @@
   pages={11035--11048},
   year={2022}
 }
-
+//76
 @inproceedings{kong2023lasermix,
   title={Lasermix for semi-supervised lidar semantic segmentation},
   author={Kong, Lingdong and Ren, Jiawei and Pan, Liang and Liu, Ziwei},
@@ -889,7 +910,7 @@
   year={2023}
 }
 % POSS following
-
+//24
 @inproceedings{MinkowskiNet,
   title={4d spatio-temporal convnets: Minkowski convolutional neural networks},
   author={Choy, Christopher and Gwak, JunYoung and Savarese, Silvio},
@@ -897,13 +918,93 @@
   pages={3075--3084},
   year={2019}
 }
-
+//25
+@inproceedings{graham20183d,
+  title={3d semantic segmentation with submanifold sparse convolutional networks},
+  author={Graham, Benjamin and Engelcke, Martin and Van Der Maaten, Laurens},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={9224--9232},
+  year={2018}
+}
+//50
 @article{Annotator,
   title={Annotator: A generic active learning baseline for lidar semantic segmentation},
   author={Xie, Binhui and Li, Shuang and Guo, Qingju and Liu, Chi and Cheng, Xinjing},
   journal={Advances in Neural Information Processing Systems},
   volume={36},
   year={2023}
+}
+//51
+@inproceedings{shao2022active,
+  title={Active learning for point cloud semantic segmentation via spatial-structural diversity reasoning},
+  author={Shao, Feifei and Luo, Yawei and Liu, Ping and Chen, Jie and Yang, Yi and Lu, Yulei and Xiao, Jun},
+  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
+  pages={2575--2585},
+  year={2022}
+}
+//52
+@inproceedings{hu2022lidal,
+  title={Lidal: Inter-frame uncertainty based active learning for 3d lidar semantic segmentation},
+  author={Hu, Zeyu and Bai, Xuyang and Zhang, Runze and Wang, Xin and Sun, Guangyuan and Fu, Hongbo and Tai, Chiew-Lan},
+  booktitle={European Conference on Computer Vision},
+  pages={248--265},
+  year={2022},
+  organization={Springer}
+}
+//53
+@article{liu2024active,
+  title={Active self-training for weakly supervised 3D scene semantic segmentation},
+  author={Liu, Gengxin and van Kaick, Oliver and Huang, Hui and Hu, Ruizhen},
+  journal={Computational Visual Media},
+  volume={10},
+  number={3},
+  pages={425--438},
+  year={2024},
+  publisher={Springer}
+}
+//54
+@inproceedings{wei2024basal,
+  title={BaSAL: Size-Balanced Warm Start Active Learning for LiDAR Semantic Segmentation},
+  author={Wei, Jiarong and Lin, Yancong and Caesar, Holger},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={18258--18264},
+  year={2024},
+  organization={IEEE}
+}
+//55
+@inproceedings{shin2021all,
+  title={All you need are a few pixels: semantic segmentation with pixelpick},
+  author={Shin, Gyungin and Xie, Weidi and Albanie, Samuel},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={1687--1697},
+  year={2021}
+}
+//56
+@article{ruckin2024semi,
+  title={Semi-supervised active learning for semantic segmentation in unknown environments using informative path planning},
+  author={R{\"u}ckin, Julius and Magistri, Federico and Stachniss, Cyrill and Popovi{\'c}, Marija},
+  journal={IEEE Robotics and Automation Letters},
+  volume={9},
+  number={3},
+  pages={2662--2669},
+  year={2024},
+  publisher={IEEE}
+}
+//57
+@inproceedings{xu2023hierarchical,
+  title={Hierarchical point-based active learning for semi-supervised point cloud semantic segmentation},
+  author={Xu, Zongyi and Yuan, Bo and Zhao, Shanshan and Zhang, Qianni and Gao, Xinbo},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={18098--18108},
+  year={2023}
+}
+//58
+@inproceedings{yi2021complete,
+  title={Complete \& label: A domain adaptation approach to semantic segmentation of lidar point clouds},
+  author={Yi, Li and Gong, Boqing and Funkhouser, Thomas},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={15363--15373},
+  year={2021}
 }
 @article{paszke2019pytorch,
   title={Pytorch: An imperative style, high-performance deep learning library},
@@ -1055,7 +1156,7 @@
   pages={33330--33342},
   year={2022}
 }
-
+//39
 @inproceedings{wu2024point,
   title={Point Transformer V3: Simpler Faster Stronger},
   author={Wu, Xiaoyang and Jiang, Li and Wang, Peng-Shuai and Liu, Zhijian and Liu, Xihui and Qiao, Yu and Ouyang, Wanli and He, Tong and Zhao, Hengshuang},
@@ -1063,7 +1164,91 @@
   pages={4840--4851},
   year={2024}
 }
-
+//40
+@inproceedings{tan2019batch,
+  title={Batch mode active learning for semantic segmentation based on multi-clue sample selection},
+  author={Tan, Yao and Yang, Liu and Hu, Qinghua and Du, Zhibin},
+  booktitle={Proceedings of the 28th ACM International Conference on Information and Knowledge Management},
+  pages={831--840},
+  year={2019}
+}
+//41
+@inproceedings{sinha2019variational,
+  title={Variational adversarial active learning},
+  author={Sinha, Samarth and Ebrahimi, Sayna and Darrell, Trevor},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={5972--5981},
+  year={2019}
+}
+//42
+@inproceedings{zhang2020state,
+  title={State-relabeling adversarial active learning},
+  author={Zhang, Beichen and Li, Liang and Yang, Shijie and Wang, Shuhui and Zha, Zheng-Jun and Huang, Qingming},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={8756--8765},
+  year={2020}
+}
+//43
+@inproceedings{xie2020deal,
+  title={Deal: Difficulty-aware active learning for semantic segmentation},
+  author={Xie, Shuai and Feng, Zunlei and Chen, Ying and Sun, Songtao and Ma, Chao and Song, Mingli},
+  booktitle={Proceedings of the Asian conference on computer vision},
+  year={2020}
+}
+//44
+@inproceedings{huang2021semi,
+  title={Semi-supervised active learning with temporal output discrepancy},
+  author={Huang, Siyu and Wang, Tianyang and Xiong, Haoyi and Huan, Jun and Dou, Dejing},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={3447--3456},
+  year={2021}
+}
+//45
+@inproceedings{qiao2022cpral,
+  title={Cpral: Collaborative panoptic-regional active learning for semantic segmentation},
+  author={Qiao, Yu and Zhu, Jincheng and Long, Chengjiang and Zhang, Zeyao and Wang, Yuxin and Du, Zhenjun and Yang, Xin},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={36},
+  number={2},
+  pages={2108--2116},
+  year={2022}
+}
+//46
+@inproceedings{siddiqui2020viewal,
+  title={Viewal: Active learning with viewpoint entropy for semantic segmentation},
+  author={Siddiqui, Yawar and Valentin, Julien and Nie{\ss}ner, Matthias},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={9433--9443},
+  year={2020}
+}
+//47
+@inproceedings{cai2021revisiting,
+  title={Revisiting superpixels for active learning in semantic segmentation with realistic annotation costs},
+  author={Cai, Lile and Xu, Xun and Liew, Jun Hao and Foo, Chuan Sheng},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={10988--10997},
+  year={2021}
+}
+//48
+@article{lin2020active,
+  title={Active and incremental learning for semantic ALS point cloud segmentation},
+  author={Lin, Yaping and Vosselman, George and Cao, Yanpeng and Yang, Michael Ying},
+  journal={ISPRS journal of photogrammetry and remote sensing},
+  volume={169},
+  pages={73--92},
+  year={2020},
+  publisher={Elsevier}
+}
+//49
+@article{wang2023one,
+  title={One class one click: Quasi scene-level weakly supervised point cloud semantic segmentation with active learning},
+  author={Wang, Puzuo and Yao, Wei and Shao, Jie},
+  journal={ISPRS Journal of Photogrammetry and Remote Sensing},
+  volume={204},
+  pages={89--104},
+  year={2023},
+  publisher={Elsevier}
+}
 @inproceedings{an2024rethinking,
   title={Rethinking Few-shot 3D Point Cloud Semantic Segmentation},
   author={An, Zhaochong and Sun, Guolei and Liu, Yun and Liu, Fayao and Wu, Zongwei and Wang, Dan and Van Gool, Luc and Belongie, Serge},
@@ -1079,7 +1264,7 @@
   pages={16024--16033},
   year={2021}
 }
-
+//36
 @inproceedings{zhao2021point,
   title={Point transformer},
   author={Zhao, Hengshuang and Jiang, Li and Jia, Jiaya and Torr, Philip HS and Koltun, Vladlen},
@@ -1087,6 +1272,28 @@
   pages={16259--16268},
   year={2021}
 }
+//37
+@article{JSJF202203012,
+author = {  吴军 and     崔玥 and     赵雪梅 and     陈睿星 and 徐刚},
+  title = {SSA-PointNet++:空间自注意力机制下的3D点云语义分割网络},
+  journal = {计算机辅助设计与图形学学报},
+  volume = {34},
+  number = {03},
+  pages = {437-448},
+  year = {2022},
+  issn = {1003-9775},
+}  
+//38  
+@article{GXJM202207010,
+  author = {  杨军 and 李博赞},
+  title = {基于自注意力特征融合组卷积神经网络的三维点云语义分割},
+  journal = {光学精密工程},
+  volume = {30},
+  number = {07},
+  pages = {840-853},
+  year = {2022},
+  issn = {1004-924X},
+}    
 
 ======================================
 
@@ -1165,7 +1372,6 @@ ADA都是图像
 }
 =========================================
 DA 点云
-cosmix
 @inproceedings{jaritz2020xmuda,
   title={xmuda: Cross-modal unsupervised domain adaptation for 3d semantic segmentation},
   author={Jaritz, Maximilian and Vu, Tuan-Hung and Charette, Raoul de and Wirbel, Emilie and P{\'e}rez, Patrick},
@@ -1173,6 +1379,7 @@ cosmix
   pages={12605--12614},
   year={2020}
 }
+//68 cosmix-ssda
 @article{saltori2023compositional,
   title={Compositional semantic mix for domain adaptation in point cloud segmentation},
   author={Saltori, Cristiano and Galasso, Fabio and Fiameni, Giuseppe and Sebe, Nicu and Poiesi, Fabio and Ricci, Elisa},
@@ -1180,6 +1387,7 @@ cosmix
   year={2023},
   publisher={IEEE}
 }
+//64
 @article{jaritz2022cross,
   title={Cross-modal learning for domain adaptation in 3d semantic segmentation},
   author={Jaritz, Maximilian and Vu, Tuan-Hung and De Charette, Raoul and Wirbel, {\'E}milie and P{\'e}rez, Patrick},
@@ -1207,7 +1415,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   pages={14781--14791},
   year={2024}
 }
-
+//63
 @inproceedings{jiang2021lidarnet,
   title={Lidarnet: A boundary-aware domain adaptation model for point cloud semantic segmentation},
   author={Jiang, Peng and Saripalli, Srikanth},
@@ -1244,7 +1452,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   pages={5240--5250},
   year={2023}
 }
-
+//15
 @inproceedings{cortinhal2020salsanext,
   title={Salsanext: Fast, uncertainty-aware semantic segmentation of lidar point clouds},
   author={Cortinhal, Tiago and Tzelepis, George and Erdal Aksoy, Eren},
@@ -1253,6 +1461,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   year={2020},
   organization={Springer}
 }
+// 14
 @inproceedings{aksoy2020salsanet,
   title={Salsanet: Fast road and vehicle segmentation in lidar point clouds for autonomous driving},
   author={Aksoy, Eren Erdal and Baci, Saimir and Cavdar, Selcuk},
@@ -1268,6 +1477,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   pages={228--240},
   year={2023}
 }
+//17
 @inproceedings{wu2018squeezeseg,
   title={Squeezeseg: Convolutional neural nets with recurrent crf for real-time road-object segmentation from 3d lidar point cloud},
   author={Wu, Bichen and Wan, Alvin and Yue, Xiangyu and Keutzer, Kurt},
@@ -1276,6 +1486,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   year={2018},
   organization={IEEE}
 }
+//18
 @inproceedings{wu2019squeezesegv2,
   title={Squeezesegv2: Improved model structure and unsupervised domain adaptation for road-object segmentation from a lidar point cloud},
   author={Wu, Bichen and Zhou, Xuanyu and Zhao, Sicheng and Yue, Xiangyu and Keutzer, Kurt},
@@ -1284,6 +1495,25 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   year={2019},
   organization={IEEE}
 }
+//19
+@inproceedings{xu2020squeezesegv3,
+  title={Squeezesegv3: Spatially-adaptive convolution for efficient point-cloud segmentation},
+  author={Xu, Chenfeng and Wu, Bichen and Wang, Zining and Zhan, Wei and Vajda, Peter and Keutzer, Kurt and Tomizuka, Masayoshi},
+  booktitle={Computer vision--ECCV 2020: 16th European conference, glasgow, UK, August 23--28, 2020, proceedings, part XXVIII 16},
+  pages={1--19},
+  year={2020},
+  organization={Springer}
+}
+//20
+@article{boulch2017unstructured,
+  title={Unstructured point cloud semantic labeling using deep segmentation networks.},
+  author={Boulch, Alexandre and Le Saux, Bertrand and Audebert, Nicolas and others},
+  journal={3dor@ eurographics},
+  volume={3},
+  pages={1--8},
+  year={2017}
+}
+//21
 @inproceedings{kundu2020virtual,
   title={Virtual multi-view fusion for 3d semantic segmentation},
   author={Kundu, Abhijit and Yin, Xiaoqi and Fathi, Alireza and Ross, David and Brewington, Brian and Funkhouser, Thomas and Pantofaru, Caroline},
@@ -1292,6 +1522,22 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   year={2020},
   organization={Springer}
 }
+//22
+@inproceedings{robert2022learning,
+  title={Learning multi-view aggregation in the wild for large-scale 3d semantic segmentation},
+  author={Robert, Damien and Vallet, Bruno and Landrieu, Loic},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={5575--5584},
+  year={2022}
+}
+//23
+@mastersthesis{wang1022567052,
+  author = {王殷瑞},
+  title = {融合二维图像特征的三维点云语义分割},
+  school = {北京建筑大学},
+  year = {2022}
+}    
+
 @inproceedings{li2024tfnet,
   title={Tfnet: Exploiting temporal cues for fast and accurate lidar semantic segmentation},
   author={Li, Rong and Li, Shijie and Chen, Xieyuanli and Ma, Teli and Gall, Juergen and Liang, Junwei},
@@ -1301,12 +1547,29 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
 }
 ===================================
 基于点的
+//33
 @inproceedings{hu2020randla,
   title={Randla-net: Efficient semantic segmentation of large-scale point clouds},
   author={Hu, Qingyong and Yang, Bo and Xie, Linhai and Rosa, Stefano and Guo, Yulan and Wang, Zhihua and Trigoni, Niki and Markham, Andrew},
   booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
   pages={11108--11117},
   year={2020}
+}
+//34
+@inproceedings{fan2021scf,
+  title={SCF-Net: Learning spatial contextual features for large-scale point cloud segmentation},
+  author={Fan, Siqi and Dong, Qiulei and Zhu, Fenghua and Lv, Yisheng and Ye, Peijun and Wang, Fei-Yue},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={14504--14513},
+  year={2021}
+}
+//35
+@inproceedings{qiu2021semantic,
+  title={Semantic segmentation for real point cloud scenes via bilateral augmentation and adaptive fusion},
+  author={Qiu, Shi and Anwar, Saeed and Barnes, Nick},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={1757--1767},
+  year={2021}
 }
 @inproceedings{lai2022stratified,
   title={Stratified transformer for 3d point cloud segmentation},
@@ -1354,6 +1617,7 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   pages={17545--17555},
   year={2023}
 }
+//26
 @inproceedings{tang2020searching,
   title={Searching efficient 3d architectures with sparse point-voxel convolution},
   author={Tang, Haotian and Liu, Zhijian and Zhao, Shengyu and Lin, Yujun and Lin, Ji and Wang, Hanrui and Han, Song},
@@ -1361,6 +1625,14 @@ Adversarially masking synthetic to mimic real: Adaptive noise injection for poin
   pages={685--702},
   year={2020},
   organization={Springer}
+}
+//27
+@inproceedings{peng2024oa,
+  title={Oa-cnns: Omni-adaptive sparse cnns for 3d semantic segmentation},
+  author={Peng, Bohao and Wu, Xiaoyang and Jiang, Li and Chen, Yukang and Zhao, Hengshuang and Tian, Zhuotao and Jia, Jiaya},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={21305--21315},
+  year={2024}
 }
 Rpvnet: A deep and efficient range-point-voxel fusion network for lidar point cloud segmentation
 Cylindrical and asymmetrical 3d convolution networks for lidar segmentation
@@ -1380,6 +1652,7 @@ Cylindrical and asymmetrical 3d convolution networks for lidar segmentation
   year={2024}
 }
 mix3d
+//75
 @inproceedings{nekrasov2021mix3d,
   title={Mix3d: Out-of-context data augmentation for 3d scenes},
   author={Nekrasov, Alexey and Schult, Jonas and Litany, Or and Leibe, Bastian and Engelmann, Francis},
@@ -1389,6 +1662,7 @@ mix3d
   organization={IEEE}
 }
 RayCast
+//59
 @inproceedings{langer2020domain,
   title={Domain transfer for semantic segmentation of LiDAR data using deep neural networks},
   author={Langer, Ferdinand and Milioto, Andres and Haag, Alexandre and Behley, Jens and Stachniss, Cyrill},
@@ -1442,6 +1716,7 @@ SN
   pages={739--748},
   year={2020}
 }
+//69
 @inproceedings{CLUE,
   title={Active domain adaptation via clustering uncertainty-weighted embeddings},
   author={Prabhu, Viraj and Chandrasekaran, Arjun and Saenko, Kate and Hoffman, Judy},
@@ -1469,6 +1744,7 @@ SN
 }
 
 % 传统方法负迁移
+//71
 @inproceedings{Divide,
   title={Divide and adapt: Active domain adaptation via customized learning},
   author={Huang, Duojun and Li, Jichang and Chen, Weikai and Huang, Junshi and Chai, Zhenhua and Li, Guanbin},
@@ -1476,13 +1752,29 @@ SN
   pages={7651--7660},
   year={2023}
 }
-
+//65
 @inproceedings{chen2021semi,
   title={Semi-supervised domain adaptation based on dual-level domain mixing for semantic segmentation},
   author={Chen, Shuaijun and Jia, Xu and He, Jianzhong and Shi, Yongjie and Liu, Jianzhuang},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   pages={11018--11027},
   year={2021}
+}
+//66
+@inproceedings{saito2019semi,
+  title={Semi-supervised domain adaptation via minimax entropy},
+  author={Saito, Kuniaki and Kim, Donghyun and Sclaroff, Stan and Darrell, Trevor and Saenko, Kate},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={8050--8058},
+  year={2019}
+}
+//67
+@inproceedings{yu2023semi,
+  title={Semi-supervised domain adaptation with source label adaptation},
+  author={Yu, Yu-Chu and Lin, Hsuan-Tien},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={24100--24109},
+  year={2023}
 }
 
 @inproceedings{wang2023ssda3d,
@@ -1503,7 +1795,7 @@ SN
   year={2021},
   organization={IEEE}
 }
-
+//70
 @inproceedings{SDM,
   title={Learning distinctive margin toward active domain adaptation},
   author={Xie, Ming and Li, Yuxi and Wang, Yabiao and Luo, Zekun and Gan, Zhenye and Sun, Zhongyi and Chi, Mingmin and Wang, Chengjie and Wang, Pei},
@@ -1511,7 +1803,7 @@ SN
   pages={7993--8002},
   year={2022}
 }
-
+//72
 @inproceedings{HPML,
   title={Mhpl: Minimum happy points learning for active source free domain adaptation},
   author={Wang, Fan and Han, Zhongyi and Zhang, Zhiyan and He, Rundong and Yin, Yilong},
@@ -1519,7 +1811,22 @@ SN
   pages={20008--20018},
   year={2023}
 }
-
+//73
+@article{zhang2017mixup,
+  title={mixup: Beyond empirical risk minimization},
+  author={Zhang, Hongyi and Cisse, Moustapha and Dauphin, Yann N and Lopez-Paz, David},
+  journal={arXiv preprint arXiv:1710.09412},
+  year={2017}
+}
+//74
+@inproceedings{yun2019cutmix,
+  title={Cutmix: Regularization strategy to train strong classifiers with localizable features},
+  author={Yun, Sangdoo and Han, Dongyoon and Oh, Seong Joon and Chun, Sanghyuk and Choe, Junsuk and Yoo, Youngjoon},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={6023--6032},
+  year={2019}
+}
+//16
 @inproceedings{RangeNet++,
   title={Rangenet++: Fast and accurate lidar semantic segmentation},
   author={Milioto, Andres and Vizzo, Ignacio and Behley, Jens and Stachniss, Cyrill},
@@ -1534,4 +1841,57 @@ SN
   author={Ajakan, Hana and Germain, Pascal and Larochelle, Hugo and Laviolette, Fran{\c{c}}ois and Marchand, Mario},
   journal={arXiv preprint arXiv:1412.4446},
   year={2014}
+}
+
+@inproceedings{S3DIS,
+  title={3d semantic parsing of large-scale indoor spaces},
+  author={Armeni, Iro and Sener, Ozan and Zamir, Amir R and Jiang, Helen and Brilakis, Ioannis and Fischer, Martin and Savarese, Silvio},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1534--1543},
+  year={2016}
+}
+
+@inproceedings{Scannet,
+  title={Scannet: Richly-annotated 3d reconstructions of indoor scenes},
+  author={Dai, Angela and Chang, Angel X and Savva, Manolis and Halber, Maciej and Funkhouser, Thomas and Nie{\ss}ner, Matthias},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={5828--5839},
+  year={2017}
+}
+//4
+@inproceedings{levinson2011towards,
+  title={Towards fully autonomous driving: Systems and algorithms},
+  author={Levinson, Jesse and Askeland, Jake and Becker, Jan and Dolson, Jennifer and Held, David and Kammel, Soeren and Kolter, J Zico and Langer, Dirk and Pink, Oliver and Pratt, Vaughan and others},
+  booktitle={2011 IEEE intelligent vehicles symposium (IV)},
+  pages={163--168},
+  year={2011},
+  organization={IEEE}
+}
+//5
+@article{zhou2022loop,
+  title={Loop closure detection using local 3D deep descriptors},
+  author={Zhou, Youjie and Wang, Yiming and Poiesi, Fabio and Qin, Qi and Wan, Yi},
+  journal={IEEE Robotics and Automation Letters},
+  volume={7},
+  number={3},
+  pages={6335--6342},
+  year={2022},
+  publisher={IEEE}
+}
+//7
+@article{carmigniani2011augmented,
+  title={Augmented reality: an overview},
+  author={Carmigniani, Julie and Furht, Borko},
+  journal={Handbook of augmented reality},
+  pages={3--46},
+  year={2011},
+  publisher={Springer}
+}
+
+@InProceedings{caesar2020nuscenes,
+  author = {Caesar, Holger and Bankiti, Varun and Lang, Alex H. and Vora, Sourabh and Liong, Venice Erin and Xu, Qiang and Krishnan, Anush and Pan, Yu and Baldan, Giancarlo and Beijbom, Oscar},
+  title = {nuScenes: A Multimodal Dataset for Autonomous Driving},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2020}
 }
