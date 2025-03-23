@@ -2,28 +2,28 @@
 	\renewcommand{\arraystretch}{1}
     \centering
     \setlength{\tabcolsep}{10mm}
-    \bicaption[\xiaosi 第三章方法与其他域适应方法在SynLiDAR\(\to\)SemanticKITTI数据上的比较]{\wuhao 本方法与其他域适应方法在SynLiDAR\(\to\)SemanticKITTI数据上的比较}{\wuhao Comparison with other domain adaptation methods on SynLiDAR\(\to\)SemanticKITTI}
+    \bicaption[\xiaosi 第四章方法与其他域适应方法在SynLiDAR\(\to\)SemanticKITTI数据上的比较]{\wuhao 本章方法与其他域适应方法在SynLiDAR\(\to\)SemanticKITTI数据上的比较}{\wuhao Comparison with other domain adaptation methods on SynLiDAR\(\to\)SemanticKITTI}
     \label{tab:4-1}
     \wuhao
-    \begin{tabular}{lccc}
+    \begin{tabular}{cccc}
         \toprule[1.5pt]
         \textbf{方法} & \textbf{域适应} & \textbf{标注} & \textbf{结果} \\
         \midrule
         Source-Only   & -          & -       & 22.8 \\
         Target-Only   & -          & 100\%       & 60.1 \\
-        AADA          & UDA & -       & 23.0 \\
-        AdvEnt        & UDA & -       & 25.8 \\
-        CRST          & UDA & -       & 26.5 \\
-        ST-PCt        & UDA & -       & 28.9 \\
-        PolarMix      & UDA & -       & 32.2 \\
-        CoSMix        & UDA & -       & 31.0 \\
-        DGT-ST        & UDA & -       & 43.1 \\
-        MME           & SSDA & 0.04\%  & 24.5 \\
-        APE           & SSDA & 0.04\%  & 25.1 \\
-        APE-PCT       & SSDA & 0.04\%  & 27.0 \\
-        CoSMix-SSDA   & SSDA & 0.04\%  & 34.3 \\
+        AADA\upcite{AADA}          & UDA & -       & 23.0 \\
+        AdvEnt\upcite{vu2019advent}        & UDA & -       & 25.8 \\
+        CRST\upcite{zou2019confidence}          & UDA & -       & 26.5 \\
+        ST-PCT\upcite{xiao2022transfer}        & UDA & -       & 28.9 \\
+        PolarMix\upcite{xiao2022polarmix}      & UDA & -       & 32.2 \\
+        CoSMix\upcite{saltori2022cosmix}        & UDA & -       & 31.0 \\
+        DGT-ST\upcite{yuan2024density}        & UDA & -       & 43.1 \\
+        MME\upcite{saito2019semi}           & SSDA & 0.04\%  & 24.5 \\
+        APE\upcite{APE}           & SSDA & 0.04\%  & 25.1 \\
+        APE-PCT\upcite{xiao2022transfer}       & SSDA & 0.04\%  & 27.0 \\
+        CoSMix-SSDA\upcite{saltori2023compositional}   & SSDA & 0.04\%  & 34.3 \\
         本章方法       & SSDA   & 0.04\%   & 50.5 \\
-        Annotator     & ADA   & 0.1\%     & 57.7 \\
+        Annotator\upcite{Annotator}     & ADA   & 0.1\%     & 57.7 \\
         前章方法     & ADA   & 0.1\%     & 58.7 \\
         \textbf{本章方法}       & ADA   & 0.1\%     & \textbf{65.5} \\
         \bottomrule[1.5pt]

@@ -6,19 +6,19 @@
     \bicaption[\xiaosi 第四章方法与其他域适应方法在SemanticKITTI\(\to\)nuScenes数据上的比较]{\wuhao 本章方法与其他域适应方法在SemanticKITTI\(\to\)nuScenes数据上的比较}{\wuhao Comparison with other domain adaptation methods on SemanticKITTI\(\to\)nuScenes}
     \label{tab:4-3}
     \wuhao
-    \begin{tabular}{lccc}
+    \begin{tabular}{cccc}
         \toprule[1.5pt]
         \textbf{方法} & \textbf{域适应} & \textbf{标注} & \textbf{结果} \\
         \midrule
         Source-Only   & -       & -           & 33.7 \\
         Target-Only   & -       & 100\%           & 82.7 \\
-        Mix3D         & UDA     & -   & 31.5 \\
-        CoSMix        & UDA     & -   & 29.8 \\
-        SN              & UDA   & -     & 25.8 \\
-        RayCast        & UDA    & -    & 30.9 \\
-        LiDOG        & UDA      & -       & 34.9 \\
-        前章方法       & ADA    & 0.1\%      & ？ \\
-        Annotator     & ADA     & 0.1\%     & 75.9 \\
+        Mix3D\upcite{nekrasov2021mix3d}         & UDA     & -   & 31.5 \\
+        CoSMix\upcite{saltori2022cosmix}        & UDA     & -   & 29.8 \\
+        SN\upcite{wang2020train}              & UDA   & -     & 25.8 \\
+        RayCast\upcite{langer2020domain}        & UDA    & -    & 30.9 \\
+        LiDOG\upcite{saltori2023walking}        & UDA      & -       & 34.9 \\
+        前章方法       & ADA    & 0.1\%      & 76.5 \\
+        Annotator\upcite{Annotator}     & ADA     & 0.1\%     & 75.9 \\
         \textbf{本章方法}       & ADA    & 0.1\%      & \textbf{81.0} \\
         \bottomrule[1.5pt]
     \end{tabular}

@@ -6,24 +6,29 @@
     \bicaption[\xiaosi 第三章方法与其他域适应方法在SynLiDAR\(\to\)SemanticPOSS数据上的比较]{\wuhao 本方法与其他域适应方法在SynLiDAR\(\to\)SemanticPOSS数据上的比较}{\wuhao Comparison with other domain adaptation methods on SynLiDAR\(\to\)SemanticPOSS}
     \label{tab:3-2}
     \wuhao
-    \begin{tabular}{lccc}
+    \begin{tabular}{cccc}
         \toprule[1.5pt]
         \textbf{方法} & \textbf{域适应} & \textbf{标注} & \textbf{结果} \\
         \midrule
         Source-Only   & -           & -       & 34.6 \\
         Target-Only   & -           & 100\%       & 58.0 \\
-        CRST          & UDA & -       & 27.1 \\
-        ST-PCT        & UDA & -       & 29.6 \\
-        PolarMix      & UDA & -       & 30.4 \\
-        CoSMix        & UDA & -       & 40.4 \\
-        DGT-ST        & UDA & -       & 50.8 \\
+        % CRST          & UDA & -       & 27.1 \\
+        % ST-PCT        & UDA & -       & 29.6 \\
+        % PolarMix      & UDA & -       & 30.4 \\
+        % CoSMix        & UDA & -       & 40.4 \\
+        % DGT-ST        & UDA & -       & 50.8 \\
+        CRST\upcite{zou2019confidence}          & UDA & -       & 27.1 \\
+        ST-PCT\upcite{xiao2022transfer}        & UDA & -       & 29.6 \\
+        PolarMix\upcite{xiao2022polarmix}      & UDA & -       & 30.4 \\
+        CoSMix\upcite{saltori2022cosmix}        & UDA & -       & 40.4 \\
+        DGT-ST\upcite{yuan2024density}        & UDA & -       & 50.8 \\
         % MME           & SSDA & 0.01\%  & 33.2 \\
         % APE           & SSDA & 0.01\%  & 30.3 \\
         % APE-PCT       & SSDA & 0.01\%  & 31.2 \\
         % CoSMix-SSDA   & SSDA & 0.01\%  & 41.0 \\
         % 本章方法       & SSDA   & 0.01\%   & 57.5 \\
-        Annotator     & ADA   & 0.1\%     & 52.0 \\
-        本章方法       & ADA   & 0.1\%     & \textbf{56.6} \\
+        Annotator\upcite{Annotator}     & ADA   & 0.1\%     & 52.0 \\
+        \textbf{本章方法}       & ADA   & 0.1\%     & \textbf{56.6} \\
         \bottomrule[1.5pt]
     \end{tabular}
 \end{table}

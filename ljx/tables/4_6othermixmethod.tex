@@ -1,17 +1,17 @@
 \begin{table}[H]
 	\renewcommand{\arraystretch}{1}
     \centering
-    \setlength{\tabcolsep}{8mm}
-    \bicaption[\xiaosi 第四章方法与其他Mixing方法对比]{\wuhao 本章方法与其他Mixing方法对比}{\wuhao Comparison with other mixing methods}
+    \setlength{\tabcolsep}{10mm}
+    \bicaption[\xiaosi 第四章方法与其他Mixing方法在SynLiDAR$\to$SemanticKITTI数据上的比较]{\wuhao 本章方法与其他Mixing方法在SynLiDAR$\to$SemanticKITTI数据上的比较}{\wuhao Comparison with other mixing methods on SynLiDAR$\to$SemanticKITTI}
     \label{tab:4-6}
     \wuhao
     \begin{tabular}{cccc}
         \toprule[1.5pt]
         \textbf{主动学习} & \textbf{Mixing方法} & \textbf{标注} & \textbf{结果} \\
         \midrule
-        \multirow{3}{*}{SPAL} & LaserMix & 0.1\% & 39.6 \\
-        ~& PolarMix & 0.1\% & ? \\
-        ~& Ours & 0.1\% & \textbf{65.5} \\
+        \multirow{3}{*}{SPAL} & LaserMix\upcite{kong2023lasermix} & 0.1\% & 39.6 \\
+        ~& PolarMix\upcite{xiao2022polarmix} & 0.1\% & 46.6 \\
+        ~& \textbf{Ours} & 0.1\% & \textbf{65.5} \\
         \bottomrule[1.5pt]
     \end{tabular}
 \end{table}
