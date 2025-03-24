@@ -2047,7 +2047,10 @@ FUNCTION {initialize} {                           % void initialize() {
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                                                  %
+
+FUNCTION {sort} {
+  % 禁用排序，按引用顺序编号
+}%
                                                   % void main() {
 READ                                              %   List<Entry> entryList = read("<file>.bib");
 EXECUTE {initialize}                              %   initialize();
