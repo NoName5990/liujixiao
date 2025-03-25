@@ -142,16 +142,18 @@
     \label{eq:distance}
     \mathbf{d}_i^c = \| \mathbf{f}_i^t - \mathbf{p}^c \|
 \end{equation}
-式中\( \mathbf{f}_i^t \in \mathbf{F}^T \)表示目标域第\( i \)个未标注点的特征向量，\(\mathbf{p}^c\)为源域类别\(c\)的原型向量。\( \mathbf{d}_i^c \)代表点到源域类别\(c\)的欧式距离，该距离度量反映了目标点特征与源域类别质心的空间距离，其值越小代表未标注点在特征空间中距离源域类别\( c \)的聚类中心越近；越大则表明未标注点在特征空间中距离源域类别\( c \)的聚类中心越远。因此，$\mathbf{d}_i^c$将作为一个重要的域差异计算依据。
+式中\( \mathbf{f}_i^t \in \mathbf{F}^T \)表示目标域第\( i \)个未标注点的特征向量，\(\mathbf{p}^c\)为源域类别\(c\)的原型向量。\( \mathbf{d}_i^c \)代表点到源域类别\(c\)的欧式距离，该距离度量反映了目标点特征与源域类别质心的空间距离，其值越小代表未标注点在特征空间中距离源域类别\( c \)的聚类中心越近；越大则表明未标注点在特征空间中距离源域类别\( c \)的聚类中心越远。因此，$\mathbf{d}_i^c$将作为一个重要的域差异计算依据，并用于后续的域差异评分的一个重要衡量指标
 % ，距离越小，表明目标点特征在源域特征空间中越接近类别\( c \)的聚类中心。
-\vspace{-0.1cm}
-\begin{figure}[h]
+
+\begin{figure}[H]
+    \vspace{-0.2cm}
     \centering
     \includegraphics[width = \textwidth]{ljx/figure/3-3.pdf}
     \bicaption[\xiaosi 源域原型指导的数据选择]{\wuhao 源域原型指导的数据选择}{\wuhao Source-Prototype guided data selection}
     \label{fig:3-3}
+    \vspace{-0.45cm}
 \end{figure}
-\vspace{-0.35cm}
+
 \subsubsection{计算域差异评分}
 对每个目标点\(p_i\)遍历计算与所有类别原型的特征距离，生成距离向量\( \mathbf{D}_i = [d_i^1, d_i^2, \dots, d_i^C] \)。为量化其域间分布特性，需将距离向量转换为相似性度量并进行归一化处理：
 
@@ -246,16 +248,15 @@
 \input{ljx/tables/3_2poss.tex}
 实验SynLiDAR\(\to\)SemanticKITTI的结果如表\ref{tab:3-2}所示。在无监督域适应（UDA）方法中，DGT-ST仍以50.8\%的性能占据首位；
 % 而在半监督域适应（SSDA）方法中，本章方法在$0.01\%$极少量标注下达到$57.5\%$逼近全监督目标域性能，同时超过CoSMix$16.5$个百分点；
-而在主动域适应（ADA）方法中，本章方法在0.1\%的标注下取得56.6\%的性能超过Annotator4.6个百分点，相比全监督（Target-Only）结果仅差1.4个百分点，再一次证明了本章方法在合成到真实的跨域场景的有效性。由分割可视化结果图\ref{fig:3-v-2}可知，本章方法在一些易混淆的语义类别比如植物和建筑中的分割效果依然优于其他主动学习方法。
-
-\vspace{-0.1cm}
+而在主动域适应（ADA）方法中，本章方法在0.1\%的标注下取得56.6\%的性能超过Annotator4.6个百分点，相比全监督（Target-Only）结果仅差1.4个百分点，再一次证明了本章方法在合成到真实的跨域场景的有效性。分割可视化结果如图\ref{fig:3-v-2}所示，在红色方框所突出显示的区域中可以观察到，本章方法在一些易混淆的语义类别比如植物和建筑中的分割效果依然优于其他主动学习方法。
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{ljx/figure/3_vision_s2p.pdf}
     \bicaption[\xiaosi 第三章SynLiDAR$\to$SemanticPOSS分割可视化图]{\wuhao 本章SynLiDAR$\to$SemanticPOSS分割可视化图}{\wuhao Visualization of the segmentation results in the SynLiDAR$\to$SemanticPOSS}
     \label{fig:3-v-2}
+    \vspace{-0.35cm}
 \end{figure}
-\vspace{-0.35cm}
+
 
 \subsubsection{真实到真实场景}
 在合成到真实的跨域任务中，合成的数据集一般都有着标注精度更高，噪音度低的特性，因此其与真实数据集有所差异。为进一步验证方法的泛化能力，本章将方法拓展至真实到真实跨域场景，并选择nuScenes\(\to\)SemanticKITTI和SemanticKITTI\(\to\)nuScenes跨域数据集进行了实验，在此场景下，本章方法展现出与合成到真实任务相似的性能优势，进一步证明了本章方法的有效性。
