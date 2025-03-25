@@ -31,10 +31,10 @@
 
 % \subsubsection{基于点的方法}
 1）基于点的方法。
-此类方法直接处理原始点云，避免因体素化或投影导致的信息损失。典型代表如PointNet++\upcite{qi2017pointnet++}，其核心思想是通过多层感知机（MLP）逐点提取特征，并通过最大池化聚合全局信息。具体而言，对于每个点$\mathbf{p}_i$，模型不仅编码其自身坐标，还通过邻域查询（如k近邻或球查询）收集周围点集$\{\mathbf{p}_j \mid j \in \mathcal{N}(i)\}$，进而利用共享权重的MLP提取局部几何模式，如公式\eqref{eq:2-1}所示：
+此类方法直接处理原始点云，避免因体素化或投影导致的信息损失。典型代表如PointNet++\upcite{qi2017pointnet++}，其核心思想是通过多层感知机（MLP）逐点提取特征，并通过最大池化聚合全局信息。具体而言，对于每个点$\mathbf{p}_i$，模型不仅编码其自身坐标，还通过邻域查询（如k近邻或球查询）收集周围点集$\{\mathbf{p}_j \mid j \in \mathbf{N}(i)\}$，进而利用共享权重的MLP提取局部几何模式，如公式\eqref{eq:2-1}所示：
 \begin{equation}
     \label{eq:2-1}
-    \mathbf{F}_i = \text{MLP}\left(\mathbf{p}_i - \mathbf{p}_j, \|\mathbf{p}_i - \mathbf{p}_j\|_2\right) \quad \forall j \in \mathcal{N}(i)
+    \mathbf{F}_i = \text{MLP}\left(\mathbf{p}_i - \mathbf{p}_j, \|\mathbf{p}_i - \mathbf{p}_j\|_2\right) \quad \forall j \in \mathbf{N}(i)
 \end{equation}
 其中$\mathbf{p}_i - \mathbf{p}_j$表示相对位置，$\|\cdot\|_2$为欧氏距离。通过堆叠多个局部特征提取层，模型可逐步扩大感受野，捕获多尺度几何结构。
 
@@ -43,9 +43,9 @@
 基于体素的方法通过将点云转换为规则三维网格实现高效计算。MinkowskiNet\upcite{MinkowskiNet}是该领域的一个代表性方法，其核心是通过稀疏卷积网络，仅对非空体素进行计算，大幅减少内存与计算开销。稀疏卷积的表达式如公式\eqref{eq:2-2}所示：
 \begin{equation}
     \label{eq:2-2}
-    \mathbf{F}_{\text{out}}(x,y,z) = \sum_{(dx,dy,dz) \in \mathcal{K}} \mathbf{W}(dx,dy,dz) \cdot \mathbf{F}_{\text{in}}(x+dx, y+dy, z+dz)
+    \mathbf{F}_{\text{out}}(x,y,z) = \sum_{(dx,dy,dz) \in \mathbf{K}} \mathbf{W}(dx,dy,dz) \cdot \mathbf{F}_{\text{in}}(x+dx, y+dy, z+dz)
 \end{equation}
-其中$\mathcal{K}$为卷积核覆盖的偏移范围，$\mathbf{W}$为卷积核权重。与传统三维卷积不同，稀疏卷积通过哈希表管理非空体素坐标，仅对有效位置执行计算。%例如，MinkowskiNet将输入表示为稀疏张量（包含坐标$C$与特征$F$两部分），计算时仅遍历存在点的体素位置。体素化的分辨率由超参数控制，通常设为$0.05$米至$0.1$米以平衡精度与效率。
+其中$\mathbf{K}$为卷积核覆盖的偏移范围，$\mathbf{W}$为卷积核权重。与传统三维卷积不同，稀疏卷积通过哈希表管理非空体素坐标，仅对有效位置执行计算。%例如，MinkowskiNet将输入表示为稀疏张量（包含坐标$C$与特征$F$两部分），计算时仅遍历存在点的体素位置。体素化的分辨率由超参数控制，通常设为$0.05$米至$0.1$米以平衡精度与效率。
 
 % 稀疏卷积的核心优势体现在两方面：
 % \begin{itemize}
@@ -76,11 +76,11 @@
 其中$\mathbf{z}_{i,c}$表示第$i$个点在第$c$类上的得分。损失函数采用交叉熵损失，衡量预测概率与真实标签的差异，其数学表达式如公式\eqref{eq:2-5}所示：
 \begin{equation}
     \label{eq:2-5}
-    \mathcal{L} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C y_{i,c} \log P(y_i=c)
+    \mathbf{L} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C y_{i,c} \log P(y_i=c)
 \end{equation}
 式中$y_{i,c}$为one-hot编码的真实标签。%针对类别不平衡问题，可采用加权交叉熵损失，为少数类别分配更高权重：
 % \begin{equation}
-%     \mathcal{L}_{\text{weighted}} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C w_c \cdot y_{i,c} \log P(y_i=c),
+%     \mathbf{L}_{\text{weighted}} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C w_c \cdot y_{i,c} \log P(y_i=c),
 % \end{equation}
 % 其中$w_c$与类别频率成反比。此外，动态采样策略（如在训练时对稀少类别点过采样）也被用于缓解数据偏斜。
 
@@ -98,9 +98,9 @@
 % 1）基于点的方法 
 % 直接处理原始点云，利用多层感知机（MLP）对每个点及其邻域进行编码。公式为：
 % \begin{equation}
-%     \mathbf{F}_i = \text{MLP}\left(\mathbf{p}_i, \{\mathbf{p}_j \mid j \in \mathcal{N}(i)\}\right),
+%     \mathbf{F}_i = \text{MLP}\left(\mathbf{p}_i, \{\mathbf{p}_j \mid j \in \mathbf{N}(i)\}\right),
 % \end{equation}
-% 其中$\mathbf{p}_i$为第$i$个点的坐标，$\mathcal{N}(i)$为其邻域点集合。
+% 其中$\mathbf{p}_i$为第$i$个点的坐标，$\mathbf{N}(i)$为其邻域点集合。
 
 % % \subsubsubsection{基于体素的方法}
 % 2）基于体素的方法
@@ -125,7 +125,7 @@
 % \end{equation}
 % 其中$\mathbf{z}_{i,c}$为第$i$个点在第$c$类上的得分。损失函数采用交叉熵：
 % \begin{equation}
-%     \mathcal{L} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C y_{i,c} \log P(y_i=c),
+%     \mathbf{L} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C y_{i,c} \log P(y_i=c),
 % \end{equation}
 % 其中$y_{i,c}$为真实标签的one-hot编码。实际应用中需针对类别不平衡问题（如道路点远多于交通灯）优化损失权重或采样策略。当前方法如PointNet++通过局部几何编码提升精度，但对动态遮挡的鲁棒性仍需改进。
 \subsection{评价指标}
@@ -151,7 +151,7 @@
 式中$C$为类别总数，mIoU的核心优势在于其对每个类别的平等关注，即使某一类别的点数极少，其IoU值仍能直接影响整体得分，从而迫使模型兼顾所有类别。
 % \subsection{指标选择依据}
 
-当前研究普遍以mIoU为核心评价指标，主要因其能够克服类别不平衡带来的评估偏差。点云数据中，高频率类别与低频率类别的点数差异可能达到数百倍，若依赖OA这类整体指标，模型可能仅通过优化高频类别即可获得高评分，而忽视低频类别的学习。mIoU通过独立计算每个类别的重叠率，确保模型在各类别上的表现均被量化，从而更真实地反映其实际分割能力。此外，mIoU对边界误差的敏感性也优于OA，物体边缘点的误分类会同时增加$FP$和$FN$，导致IoU显著下降，而OA可能因整体正确率高而掩盖此类局部缺陷。%学术界的共识进一步强化了mIoU的地位，主流数据集（如SemanticKITTI、nuScenes）与竞赛均将其作为基准指标，使得不同模型间的横向对比更具一致性。尽管OA仍可作为辅助指标反映整体正确率，但其局限性导致其在最新研究中逐渐边缘化。例如，某模型OA达到95\%但mIoU仅为50\%，仍会被认为未达到实际应用要求。未来，随着细分场景需求的增加，边界IoU或动态加权mIoU等指标可能被引入，以更精准地评估复杂环境下的分割质量。
+当前研究普遍以mIoU为核心评价指标，主要因其能够克服类别不平衡带来的评估偏差。点云数据中，高频率类别与低频率类别的点数差异可能达到数百倍，若依赖OA这类整体指标，模型可能仅通过优化高频类别即可获得高评分，而忽视低频类别的学习，然而对于语义分割任务来说，实现对每一个类别点的精准分割是其目的所在，所以无论低频率类别还是高频率类别都是同等重要。mIoU通过独立计算每个类别的重叠率，确保模型在各类别上的表现均被量化，从而更真实地反映其实际分割能力。此外，mIoU对边界误差的敏感性也优于OA，物体边缘点的误分类会同时增加$FP$和$FN$，导致IoU显著下降，而OA可能因整体正确率高而掩盖此类局部缺陷。%学术界的共识进一步强化了mIoU的地位，主流数据集（如SemanticKITTI、nuScenes）与竞赛均将其作为基准指标，使得不同模型间的横向对比更具一致性。尽管OA仍可作为辅助指标反映整体正确率，但其局限性导致其在最新研究中逐渐边缘化。例如，某模型OA达到95\%但mIoU仅为50\%，仍会被认为未达到实际应用要求。未来，随着细分场景需求的增加，边界IoU或动态加权mIoU等指标可能被引入，以更精准地评估复杂环境下的分割质量。
 \section{主动学习基础知识}
 % \section{主动学习方法}
 % \subsection{主动学习的概念与目的}
@@ -185,7 +185,7 @@
 % \subsection{域适应的核心目标}
 % 域适应的核心数学目标是最小化源域与目标域在特征空间中的分布差异，同时保持任务性能（如分类准确率）。定义源域分布为$P_s(x,y)$，目标域分布为$P_t(x,y)$，域适应需实现：
 % \begin{equation}
-%     \min_{\theta} \underbrace{\mathbb{E}_{(x,y) \sim P_s} \mathcal{L}(f_\theta(x), y)}_{\text{源域任务损失}} + \lambda \cdot \underbrace{d(P_s(x), P_t(x))}_{\text{域差异度量}},
+%     \min_{\theta} \underbrace{\mathbb{E}_{(x,y) \sim P_s} \mathbf{L}(f_\theta(x), y)}_{\text{源域任务损失}} + \lambda \cdot \underbrace{d(P_s(x), P_t(x))}_{\text{域差异度量}},
 % \end{equation}
 % 其中$d(\cdot,\cdot)$为分布距离度量函数，$\lambda$为权衡系数。当目标域无标签时，任务损失仅作用于源域，域对齐成为关键优化方向。
 域适应是机器学习中一种重要的技术，主要用于解决模型在相同任务不同数据分布场景下的泛化问题。如图\ref{fig:2-3}所示，当模型在一个数据集即源域上训练得很好，能够正确的将数据分类，但在另一个数据集称为目标域上表现却不佳，无法对目标域中的数据进行正确的分类，而造成这一现象的主要原因是因为不同数据域之间分布不同，存在域间差异，从而导致模型无法对新数据域中的数据进行正确分类，而域适应的目标就是帮助模型适应目标域的数据分布，从而提升其在新数据中的性能。
@@ -194,21 +194,22 @@
 域适应的核心思想是找到源域和目标域之间的共同特征，并通过调整模型或数据，缩小两者之间的分布差异。造成这些差异的原因有很多，比如点云的密度、物体形状的细微变化，或者传感器采集数据的方式不同。
 % 举个例子，源域可能是由高精度激光雷达生成的密集点云，而目标域可能来自低成本雷达，点云更稀疏且噪声更多。
 域适应的目标就是让模型学会忽略这些差异，而专注于识别共同的特征信息。
-\vspace{-0.1cm}
+% \vspace{-0.1cm}
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth, scale=0.5]{ljx/figure/2-3DA.pdf}
     \bicaption[\xiaosi 域适应]{\wuhao 域适应}{\wuhao Domain adaptation}
     \label{fig:2-3}
+    \vspace{-0.35cm} 
 \end{figure}
-\vspace{-0.35cm} 
+% \vspace{-0.35cm} 
 \subsection{域对齐的典型方法}
 \subsubsection{基于差异度量的域对齐}
 % 此类方法显式定义域间分布差异，并通过优化目标函数缩小差异。常用度量包括最大均值差异（Maximum Mean Discrepancy, MMD）和对比域差异（Contrastive Domain Discrepancy, CDD）。对于常用的MMD，其计算两域在再生核希尔伯特空间（RKHS）中的均值差异，表达式如公式\eqref{eq:2-9}所示：
 最大均值差异（Maximum Mean Discrepancy, MMD）是一种衡量两个分布之间差异的常用方法，尤其在域适应与生成对抗网络等任务中应用广泛。它的核心思想是先将数据映射到一个称为可再生核希尔伯特空间（RKHS）的高维特征空间中，再比较两个分布在该特征空间中平均嵌入（mean embedding）之间的距离。如果两个分布越相似，它们在该空间中的平均嵌入就越接近；反之则越远。MMD表达式如公式\eqref{eq:2-9}所示：
 \begin{equation}
     \label{eq:2-9}
-    \text{MMD}^2 = \left\| \frac{1}{N_s} \sum_{i=1}^{N_s} \phi(x_i^s) - \frac{1}{N_t} \sum_{j=1}^{N_t} \phi(x_j^t) \right\|_{\mathcal{H}}^2,
+    \text{MMD}^2 = \left\| \frac{1}{N_s} \sum_{i=1}^{N_s} \phi(x_i^s) - \frac{1}{N_t} \sum_{j=1}^{N_t} \phi(x_j^t) \right\|_{\mathbf{H}}^2,
 \end{equation}
 其中$\phi(\cdot)$是将数据映射到高维空间的核函数，$N_s$，$N_t$分别是源域和目标域的样本数。通过最小化MMD，模型特征提取器$g_\theta$被约束以生成域不变特征。%代发附件发大发积分卡卷发梳福建省大姐夫开始减肥会计师啊咖啡机上岛咖啡结算单甲方按时分无法撒旦法发达防守打法阿斯顿发生代发收到防守打法阿斯蒂芬三大法师代发收到防守打法水电费阿斯蒂芬阿斯顿发生地方发斯蒂芬撒范德萨防守打法阿斯蒂芬撒范德萨发放
 \subsubsection{对抗式域适应}
@@ -220,49 +221,30 @@
 其中$D$试图区分源域与目标域特征，而$g_\theta$试图生成$D$无法区分的特征。而在经典模型对抗域适应网络DANN\upcite{DANN}中，则是将对抗损失与任务损失结合，如公式\eqref{eq:2-11}所示：
 \begin{equation}
     \label{eq:2-11}
-    \mathcal{L}_{\text{DANN}} = \mathcal{L}_{\text{task}} - \lambda \cdot \mathcal{L}_{\text{adv}}.
+    \mathbf{L}_{\text{DANN}} = \mathbf{L}_{\text{task}} - \lambda \cdot \mathbf{L}_{\text{adv}}.
 \end{equation}
 
 \subsubsection{自训练与伪标签}
 自训练利用模型对目标域的预测生成伪标签，逐步迭代优化。定义伪标签为$\hat{y}_j^t = \arg\max_c f_\theta(x_j^t)$，目标域损失表达是如公式\eqref{eq:2-12}所示：
 \begin{equation}
     \label{eq:2-12}
-    \mathcal{L}_{\text{self}} = \sum_{j=1}^{N_t} \mathbb{I}(\max f_\theta(x_j^t) > \tau) \cdot \mathcal{L}(f_\theta(x_j^t), \hat{y}_j^t),
+    \mathbf{L}_{\text{self}} = \sum_{j=1}^{N_t} \mathbb{I}(\max f_\theta(x_j^t) > \tau) \cdot \mathbf{L}(f_\theta(x_j^t), \hat{y}_j^t),
 \end{equation}
 其中$\tau$为置信度阈值，$\mathbb{I}(\cdot)$为指示函数。此方法需谨慎设计阈值以避免噪声累积，常与对抗训练结合使用。
 
 \section{跨域点云语义分割数据集}
 % 虽然目前开源点云语义分割数据集很多，但是不同的数据集适用于不同的场景，在点云语义分割域适应任务中，通常会选择一些比较流行且大家公认的特定数据集用于进行域适应任务。本研究涉及到合成到真实以及真实到真实两个跨域场景，因此将对这两个场景下的所有数据集都进行介绍，其中合成到真实数据集一般使用合成数据SynLiDAR适应到SemanticPOSS或者emanticKITTI真实数据集上，而在真实到真实跨域场景一般使用真实数据SemanticKITTI与nuScenes进行相互迁移适应。接下来，本小节将分别对以上数据集进行介绍。
 % （室外跨域任务，合成到真实常用数据集，真实到真实常用数据集，，以下小节分别对以上数据集进行介绍）
-虽然目前已有许多开源的点云语义分割数据集，但它们往往适用于不同的应用场景。在点云语义分割的域适应任务中，通常会选择一些流行且广受认可的特定数据集作为实验标准。本研究同时涉及合成到真实（Synthetic-to-Real）和真实到真实（Real-to-Real）两个跨域场景。其中，在合成到真实的跨域场景下，通常使用合成数据SynLiDAR\upcite{xiao2022transfer}迁移至SemanticPOSS\upcite{pan2020semanticposs}或 SemanticKITTI\upcite{behley2019semantickitti}等真实数据集；而在真实到真实的跨域场景中，则一般使用SemanticKITTI与nuScenes\upcite{caesar2020nuscenes}两个真实数据集进行相互迁移适应。以上所涉及的数据集均为室外数据集，接下来本小节将分别对这些数据集进行详细介绍。
+% 虽然目前已有许多开源的点云语义分割数据集，但它们往往适用于不同的应用场景。在点云语义分割的域适应任务中，通常会选择一些流行且广受认可的特定数据集作为实验标准。本研究同时涉及合成到真实（Synthetic-to-Real）和真实到真实（Real-to-Real）两个跨域场景。其中，在合成到真实的跨域场景下，通常使用合成数据SynLiDAR\upcite{xiao2022transfer}迁移至SemanticPOSS\upcite{pan2020semanticposs}或 SemanticKITTI\upcite{behley2019semantickitti}等真实数据集；而在真实到真实的跨域场景中，则一般使用SemanticKITTI与nuScenes\upcite{caesar2020nuscenes}两个真实数据集进行相互迁移适应。以上所涉及的数据集均为室外数据集，接下来本小节将分别对这些数据集进行详细介绍。
+虽然目前已有许多开源的点云语义分割数据集，但它们往往针对不同的应用场景设计，具有各自的特点和局限性。在点云语义分割的域适应任务中，通常会选择一些流行且广受认可的特定数据集作为实验标准，以确保结果具有可比性和公平性。本研究同时涉及合成到真实（Synthetic-to-Real）和真实到真实（Real-to-Real）两个跨域场景。在合成到真实的跨域场景下，通常使用合成数据SynLiDAR\upcite{xiao2022transfer}作为源域数据，将其迁移至SemanticPOSS\upcite{pan2020semanticposs}或SemanticKITTI\upcite{behley2019semantickitti}等真实数据集；而在真实到真实的跨域场景中，则一般选择SemanticKITTI与nuScenes\upcite{caesar2020nuscenes}这两个主流的真实数据集进行互相迁移适应。这些数据集均主要反映室外场景的特点，如数据密度、采集角度及环境复杂性等，具有较高的代表性和挑战性。接下来，本小节将对上述数据集的采集背景、数据规模以及在跨域任务中的应用情况进行详细介绍，以便为后续实验提供坚实的数据基础。
 \subsection{SynLiDAR}
-SynLiDAR是一个大规模的合成LiDAR点云数据集，专为促进从合成数据到真实数据的跨域语义分割研究而创建。该数据集包含超过190亿个逐点标注的点，涵盖32个语义类别，具有丰富的语义信息和高度的几何准确性。与现有的真实LiDAR数据集相比，SynLiDAR的规模更大，质量更高，语义类别更丰富，且标
-% \vspace{-0.1cm}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width = \textwidth, scale=0.5]{ljx/figure/2-5/synlidar.png}
-%     \bicaption[\xiaosi SynLiDAR数据集\upcite{xiao2022transfer}]{\wuhao SynLiDAR数据集\upcite{xiao2022transfer}}{\wuhao SynLiDAR datasets\upcite{xiao2022transfer}}
-%     \label{fig:2-4}
-% \end{figure}
-% \vspace{0.1cm} 
-% \vspace{-0.35cm} 
-注更加细致和全面。SynLiDAR的点云数据是在多个由专业3D设计师构建的虚拟环境中生成的，这些虚拟环境包含大量与真实世界数据在几何形状和布局上相似的物体模型。如图\ref{fig:2-4}所示，数据集中的每个虚拟场景都经过精心设计，以确保合成数据的高质量和真实性。SynLiDAR的点云数据具有逐点标注，标注类别包括汽车、自行车、摩托车、卡车、其他车辆、行人、骑自行车者、骑摩托车者、道路、停车场、人行道、其他地面、建筑物、围栏、植被、树干、地形、杆、交通标志等，涵盖了丰富的动静态对象，适用于多种语义分割任务。
+SynLiDAR是一个大规模的合成LiDAR点云数据集，专为促进从合成数据到真实数据的跨域语义分割研究而创建。该数据集包含超过190亿个逐点标注的点，涵盖32个语义类别，具有丰富的语义信息和高度的几何准确性。与现有的真实LiDAR数据集相比，SynLiDAR的规模更大，质量更高，语义类别更丰富，且标注更加细致和全面。SynLiDAR的点云数据是在多个由专业3D设计师构建的虚拟环境中生成的，这些虚拟环境包含大量与真实世界数据在几何形状和布局上相似的物体模型。如图\ref{fig:2-4}所示，数据集中的每个虚拟场景都经过精心设计，以确保合成数据的高质量和真实性。SynLiDAR的点云数据具有逐点标注，标注类别包括汽车、自行车、摩托车、卡车、其他车辆、行人、骑自行车者、骑摩托车者、道路、停车场、人行道、其他地面、建筑物、围栏、植被、树干、地形、杆、交通标志等，涵盖了丰富的动静态对象，适用于多种语义分割任务。
 \vspace{-0.1cm}
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth, scale=0.5]{ljx/figure/2-5/synlidar.png}
     \bicaption[\xiaosi SynLiDAR数据集\upcite{xiao2022transfer}]{\wuhao SynLiDAR数据集\upcite{xiao2022transfer}}{\wuhao SynLiDAR datasets\upcite{xiao2022transfer}}
     \label{fig:2-4}
-\end{figure}
-\vspace{-0.35cm} 
-\subsection{SemanticPOSS}
-SemanticPOSS是一个真实世界的小规模数据集，使用Pandora 40线激光雷达传感器在北京大学采集，包含2988个扫描样本。每个扫描样本包含约80,000到100,000个点，捕捉了典型的都市户外场景。该数据集包含13个语义类别，为研究者提供了丰富的数据资源。在数据集划分方面，遵循先验研究的方法，将包含500个点云样本的03序列分配用于验证，而剩余的2488个点云样本则用于训练。在点云语义分割域适应中，将SynLiDAR数据集上训练的模型迁移到SemanticPOSS数据集上，并将类别映射为13个共有的语义类别，包括汽车、自行车、人、骑行者、地面、建筑物、栅栏、植物、树干、杆、交通标志、垃圾桶、路锥/石块。其数据集展示图如图\ref{fig:2-5}所示。
-\vspace{-0.1cm}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width = \textwidth, scale=0.5]{ljx/figure/2-5/poss.png}
-    \bicaption[\xiaosi SemanticPOSS数据集\upcite{pan2020semanticposs}]{\wuhao SemanticPOSS数据集\upcite{pan2020semanticposs}}{\wuhao SemanticPOSS datasets\upcite{pan2020semanticposs}}
-    \label{fig:2-5}
 \end{figure}
 \vspace{-0.35cm} 
 \subsection{SemanticKITTI}
@@ -278,6 +260,16 @@ SemanticKITTI是一个大规模的室外数据集，是基于真实道路场景�
     \label{fig:2-6}
 \end{figure}
 \vspace{-0.35cm} 
+\subsection{SemanticPOSS}
+SemanticPOSS是一个真实世界的小规模数据集，使用Pandora 40线激光雷达传感器在北京大学采集，包含2988个扫描样本。每个扫描样本包含约80,000到100,000个点，捕捉了典型的都市户外场景。该数据集包含13个语义类别，为研究者提供了丰富的数据资源。在数据集划分方面，遵循先验研究的方法，将包含500个点云样本的03序列分配用于验证，而剩余的2488个点云样本则用于训练。在点云语义分割域适应中，将SynLiDAR数据集上训练的模型迁移到SemanticPOSS数据集上，并将类别映射为13个共有的语义类别，包括汽车、自行车、人、骑行者、地面、建筑物、栅栏、植物、树干、杆、交通标志、垃圾桶、路锥/石块。其数据集展示图如图\ref{fig:2-5}所示。
+% \vspace{-0.1cm}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = \textwidth, scale=0.5]{ljx/figure/2-5/poss.png}
+    \bicaption[\xiaosi SemanticPOSS数据集\upcite{pan2020semanticposs}]{\wuhao SemanticPOSS数据集\upcite{pan2020semanticposs}}{\wuhao SemanticPOSS datasets\upcite{pan2020semanticposs}}
+    \label{fig:2-5}
+    \vspace{-0.5cm} 
+\end{figure}
 \subsection{nuScenes}
 nuScenes是多模态自动驾驶数据集的代表性资源，整合了激光雷达、摄像头、毫米波雷达及定位系统的同步采集数据，覆盖波士顿与新加坡的1,000个复杂驾驶场景。其激光雷达语义分割子集（nuscenes-lidarseg）包含约14亿个点云，总计40,000帧数据，划分为850个训练验证场景与150个测试场景。语义标注涵盖16类关键目标，包括自行车、公交车、轿车、工程车、摩托车、行人、卡车、拖车等交通参与者，可行驶区域、其他人造地面、人行道、自然地面等道路要素，以及障碍物、锥形路标、植被和人造物体等环境元素。类别设计注重实际驾驶场景的多样性，尤其强调对临时障碍物的精细化标注，例如锥形路标与非铺装路面，为复杂环境下的多目标感知与路径规划提供高精度数据支持。其数据集展示图如图\ref{fig:2-7}所示。
 在点云语义分割域适应中，SemanticKITTIT与nuScenes数据进行模型的相互迁移，最终将类别映射为7个共有的语义类别，包括车辆、行人、道路、人行道、地形、人造物体、植被。

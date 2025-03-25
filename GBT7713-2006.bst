@@ -1910,6 +1910,7 @@ FUNCTION {miscc} {                              % void Entry::article() {
   false output.pages                              %   output_pages(false);
   false output.citedate                           %   output_citedate(false);
   %true output.url.or.doi                         %   output_url_or_doi(false);
+  true output.url
   end.bibitem                                     %   end_bibitem();
 }                                                 % }
                                                   %
