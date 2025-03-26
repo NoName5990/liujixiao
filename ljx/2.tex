@@ -36,7 +36,7 @@
     \label{eq:2-1}
     \mathbf{F}_i = \text{MLP}\left(\mathbf{p}_i - \mathbf{p}_j, \|\mathbf{p}_i - \mathbf{p}_j\|_2\right) \quad \forall j \in \mathbf{N}(i)
 \end{equation}
-其中$\mathbf{p}_i - \mathbf{p}_j$表示相对位置，$\|\cdot\|_2$为欧氏距离。通过堆叠多个局部特征提取层，模型可逐步扩大感受野，捕获多尺度几何结构。
+式中，$\mathbf{p}_i - \mathbf{p}_j$表示相对位置；$\|\cdot\|_2$为欧氏距离。通过堆叠多个局部特征提取层，模型可逐步扩大感受野，捕获多尺度几何结构。
 
 % \subsubsection{基于体素的方法}
 2）基于体素的方法。
@@ -45,7 +45,7 @@
     \label{eq:2-2}
     \mathbf{F}_{\text{out}}(x,y,z) = \sum_{(dx,dy,dz) \in \mathbf{K}} \mathbf{W}(dx,dy,dz) \cdot \mathbf{F}_{\text{in}}(x+dx, y+dy, z+dz)
 \end{equation}
-其中$\mathbf{K}$为卷积核覆盖的偏移范围，$\mathbf{W}$为卷积核权重。与传统三维卷积不同，稀疏卷积通过哈希表管理非空体素坐标，仅对有效位置执行计算。%例如，MinkowskiNet将输入表示为稀疏张量（包含坐标$C$与特征$F$两部分），计算时仅遍历存在点的体素位置。体素化的分辨率由超参数控制，通常设为$0.05$米至$0.1$米以平衡精度与效率。
+式中，$\mathbf{K}$为卷积核覆盖的偏移范围；$\mathbf{W}$为卷积核权重。与传统三维卷积不同，稀疏卷积通过哈希表管理非空体素坐标，仅对有效位置执行计算。%例如，MinkowskiNet将输入表示为稀疏张量（包含坐标$C$与特征$F$两部分），计算时仅遍历存在点的体素位置。体素化的分辨率由超参数控制，通常设为$0.05$米至$0.1$米以平衡精度与效率。
 
 % 稀疏卷积的核心优势体现在两方面：
 % \begin{itemize}
@@ -78,7 +78,7 @@
     \label{eq:2-5}
     \mathbf{L} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C y_{i,c} \log P(y_i=c)
 \end{equation}
-式中$y_{i,c}$为one-hot编码的真实标签。%针对类别不平衡问题，可采用加权交叉熵损失，为少数类别分配更高权重：
+式中，$y_{i,c}$为one-hot编码的真实标签。%针对类别不平衡问题，可采用加权交叉熵损失，为少数类别分配更高权重：
 % \begin{equation}
 %     \mathbf{L}_{\text{weighted}} = -\frac{1}{N} \sum_{i=1}^N \sum_{c=1}^C w_c \cdot y_{i,c} \log P(y_i=c),
 % \end{equation}
@@ -136,19 +136,19 @@
     \label{eq:2-6}
     OA = \frac{TP + TN}{TP + TN + FP + FN}
 \end{equation}
-其中$TP$表示正确预测的正例，$TN$为正确预测的反例，$FP$为误判的正例，$FN$为误判的正例。尽管OA计算简单，但在点云语义分割中，由于场景中不同类别点数差异显著，如城市道路点占比可能超过50\%，而交通灯可能不足1\%，OA易被多数类别主导，这一缺陷使得OA难以真实评估模型性能。
+式中，$TP$表示正确预测的正例；$TN$为正确预测的反例；$FP$为误判的正例；$FN$为误判的正例。尽管OA计算简单，但在点云语义分割中，由于场景中不同类别点数差异显著，如城市道路点占比可能超过50\%，而交通灯可能不足1\%，OA易被多数类别主导，这一缺陷使得OA难以真实评估模型性能。
 
 平均交并比则通过衡量每个类别的预测区域与真实区域的重叠程度，提供更均衡的评估。对于类别$c$，其交并比计算公式如\eqref{eq:2-7}所示：
 \begin{equation}
     \label{eq:2-7}
-    \text{IoU}_c = \frac{TP_c}{TP_c + FP_c + FN_c},
+    \text{IoU}_c = \frac{TP_c}{TP_c + FP_c + FN_c}
 \end{equation}
-其中$TP_c$为类别$c$的正确预测点数，$FP_c$为误判为$c$的点数，$FN_c$为漏判的$c$类点数。mIoU取所有类别IoU的平均值，其表达式如公式\eqref{eq:2-8}所示：
+式中，$TP_c$为类别$c$的正确预测点数；$FP_c$为误判为$c$的点数；$FN_c$为漏判的$c$类点数。mIoU取所有类别IoU的平均值，其表达式如公式\eqref{eq:2-8}所示：
 \begin{equation}
     \label{eq:2-8}
     \text{mIoU} = \frac{1}{C} \sum_{c=1}^C \text{IoU}_c
 \end{equation}
-式中$C$为类别总数，mIoU的核心优势在于其对每个类别的平等关注，即使某一类别的点数极少，其IoU值仍能直接影响整体得分，从而迫使模型兼顾所有类别。
+式中$C$为类别总数。mIoU的核心优势在于其对每个类别的平等关注，即使某一类别的点数极少，其IoU值仍能直接影响整体得分，从而迫使模型兼顾所有类别。
 % \subsection{指标选择依据}
 
 当前研究普遍以mIoU为核心评价指标，主要因其能够克服类别不平衡带来的评估偏差。点云数据中，高频率类别与低频率类别的点数差异可能达到数百倍，若依赖OA这类整体指标，模型可能仅通过优化高频类别即可获得高评分，而忽视低频类别的学习，然而对于语义分割任务来说，实现对每一个类别点的精准分割是其目的所在，所以无论低频率类别还是高频率类别都是同等重要。mIoU通过独立计算每个类别的重叠率，确保模型在各类别上的表现均被量化，从而更真实地反映其实际分割能力。此外，mIoU对边界误差的敏感性也优于OA，物体边缘点的误分类会同时增加$FP$和$FN$，导致IoU显著下降，而OA可能因整体正确率高而掩盖此类局部缺陷。%学术界的共识进一步强化了mIoU的地位，主流数据集（如SemanticKITTI、nuScenes）与竞赛均将其作为基准指标，使得不同模型间的横向对比更具一致性。尽管OA仍可作为辅助指标反映整体正确率，但其局限性导致其在最新研究中逐渐边缘化。例如，某模型OA达到95\%但mIoU仅为50\%，仍会被认为未达到实际应用要求。未来，随着细分场景需求的增加，边界IoU或动态加权mIoU等指标可能被引入，以更精准地评估复杂环境下的分割质量。
@@ -209,28 +209,28 @@
 最大均值差异（Maximum Mean Discrepancy, MMD）是一种衡量两个分布之间差异的常用方法，尤其在域适应与生成对抗网络等任务中应用广泛。它的核心思想是先将数据映射到一个称为可再生核希尔伯特空间（RKHS）的高维特征空间中，再比较两个分布在该特征空间中平均嵌入（mean embedding）之间的距离。如果两个分布越相似，它们在该空间中的平均嵌入就越接近；反之则越远。MMD表达式如公式\eqref{eq:2-9}所示：
 \begin{equation}
     \label{eq:2-9}
-    \text{MMD}^2 = \left\| \frac{1}{N_s} \sum_{i=1}^{N_s} \phi(x_i^s) - \frac{1}{N_t} \sum_{j=1}^{N_t} \phi(x_j^t) \right\|_{\mathbf{H}}^2,
+    \text{MMD}^2 = \left\| \frac{1}{N_s} \sum_{i=1}^{N_s} \phi(x_i^s) - \frac{1}{N_t} \sum_{j=1}^{N_t} \phi(x_j^t) \right\|_{\mathbf{H}}^2
 \end{equation}
-其中$\phi(\cdot)$是将数据映射到高维空间的核函数，$N_s$，$N_t$分别是源域和目标域的样本数。通过最小化MMD，模型特征提取器$g_\theta$被约束以生成域不变特征。%代发附件发大发积分卡卷发梳福建省大姐夫开始减肥会计师啊咖啡机上岛咖啡结算单甲方按时分无法撒旦法发达防守打法阿斯顿发生代发收到防守打法阿斯蒂芬三大法师代发收到防守打法水电费阿斯蒂芬阿斯顿发生地方发斯蒂芬撒范德萨防守打法阿斯蒂芬撒范德萨发放
+式中，$\phi(\cdot)$是将数据映射到高维空间的核函数；$N_s$，$N_t$分别是源域和目标域的样本数。通过最小化MMD，模型特征提取器$g_\theta$被约束以生成域不变特征。%代发附件发大发积分卡卷发梳福建省大姐夫开始减肥会计师啊咖啡机上岛咖啡结算单甲方按时分无法撒旦法发达防守打法阿斯顿发生代发收到防守打法阿斯蒂芬三大法师代发收到防守打法水电费阿斯蒂芬阿斯顿发生地方发斯蒂芬撒范德萨防守打法阿斯蒂芬撒范德萨发放
 \subsubsection{对抗式域适应}
 受生成对抗网络（GAN）启发，对抗训练通过域判别器$D$引导特征生成器$g_\theta$混淆域特征，其目标函数为极小极大博弈，如公式\eqref{eq:2-10}所示：
 \begin{equation}
     \label{eq:2-10}
-    \min_{g_\theta} \max_{D} \mathbb{E}_{x^s}[\log D(g_\theta(x^s))] + \mathbb{E}_{x^t}[\log (1 - D(g_\theta(x^t)))],
+    \min_{g_\theta} \max_{D} \mathbb{E}_{x^s}[\log D(g_\theta(x^s))] + \mathbb{E}_{x^t}[\log (1 - D(g_\theta(x^t)))]
 \end{equation}
-其中$D$试图区分源域与目标域特征，而$g_\theta$试图生成$D$无法区分的特征。而在经典模型对抗域适应网络DANN\upcite{DANN}中，则是将对抗损失与任务损失结合，如公式\eqref{eq:2-11}所示：
+其中$D$试图区分源域与目标域特征，而$g_\theta$试图生成$D$无法区分的特征。在经典模型对抗域适应网络DANN\upcite{DANN}中，则是将对抗损失与任务损失结合，如公式\eqref{eq:2-11}所示：
 \begin{equation}
     \label{eq:2-11}
-    \mathbf{L}_{\text{DANN}} = \mathbf{L}_{\text{task}} - \lambda \cdot \mathbf{L}_{\text{adv}}.
+    \mathbf{L}_{\text{DANN}} = \mathbf{L}_{\text{task}} - \lambda \cdot \mathbf{L}_{\text{adv}}
 \end{equation}
 
 \subsubsection{自训练与伪标签}
 自训练利用模型对目标域的预测生成伪标签，逐步迭代优化。定义伪标签为$\hat{y}_j^t = \arg\max_c f_\theta(x_j^t)$，目标域损失表达是如公式\eqref{eq:2-12}所示：
 \begin{equation}
     \label{eq:2-12}
-    \mathbf{L}_{\text{self}} = \sum_{j=1}^{N_t} \mathbb{I}(\max f_\theta(x_j^t) > \tau) \cdot \mathbf{L}(f_\theta(x_j^t), \hat{y}_j^t),
+    \mathbf{L}_{\text{self}} = \sum_{j=1}^{N_t} \mathbb{I}(\max f_\theta(x_j^t) > \tau) \cdot \mathbf{L}(f_\theta(x_j^t), \hat{y}_j^t)
 \end{equation}
-其中$\tau$为置信度阈值，$\mathbb{I}(\cdot)$为指示函数。此方法需谨慎设计阈值以避免噪声累积，常与对抗训练结合使用。
+式中，$\tau$为置信度阈值；$\mathbb{I}(\cdot)$为指示函数。此方法需谨慎设计阈值以避免噪声累积，常与对抗训练结合使用。
 
 \section{跨域点云语义分割数据集}
 % 虽然目前开源点云语义分割数据集很多，但是不同的数据集适用于不同的场景，在点云语义分割域适应任务中，通常会选择一些比较流行且大家公认的特定数据集用于进行域适应任务。本研究涉及到合成到真实以及真实到真实两个跨域场景，因此将对这两个场景下的所有数据集都进行介绍，其中合成到真实数据集一般使用合成数据SynLiDAR适应到SemanticPOSS或者emanticKITTI真实数据集上，而在真实到真实跨域场景一般使用真实数据SemanticKITTI与nuScenes进行相互迁移适应。接下来，本小节将分别对以上数据集进行介绍。

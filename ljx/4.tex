@@ -71,7 +71,7 @@
         \label{eq:al_target_update}
         \mathbf{T}^{al}_r = \mathbf{T}^{al}_{r-1} \cup \mathbf{T}^{al}_r 
     \end{equation}
-    其中，$\mathbf{T}^{al}_r$是当前主动学第$r$轮的主动标注最新数据集，而$\mathbf{T}^{al}_{r-1}$是上一轮即第$r-1$轮主动标注的数据集，其中$r$从1开始计算，并且当$r=0$时，$\mathbf{T}^{al}_0$为空集$\emptyset$。
+    式中，$\mathbf{T}^{al}_r$是当前主动学第$r$轮的主动标注最新数据集；而$\mathbf{T}^{al}_{r-1}$是上一轮即第$r-1$轮主动标注的数据集；其中$r$从1开始计算，并且当$r=0$时，$\mathbf{T}^{al}_0$为空集$\emptyset$。
     在主动学习阶段结束后，接着就是将已标注的最新的目标域数据与源数据混合。
     选择一帧带有标注的目标域数据，然后再随机匹配一帧源域数据，
     % 当然源域帧的筛选是有条件的，只有当帧中的类别的数量大于我们设定的阈值$\tau$时，这个源数据帧才有资格与当前的目标域帧进行混合，
@@ -93,7 +93,7 @@
         \quad
         \mathbf{p}_i \subset \mathbf{T}^{al}_r
     \end{equation}
-    式中，$\mathbf{Q} \subset \mathbf{M}_i$为$m$个源域候选混合子集的集合，$\mathbf{q}_i$代表第$i$个候选子集，$\mathbf{p}_i$代表一个目标域点云帧中已标注点的集合。$\|\mathbf{q}_i\|$和$\|\mathbf{p}_i\|$分别代表候选子集$\mathbf{q}_i$和目标点云已标注点$\mathbf{p}_i$的数量。候选子集$\mathbf{Q}$将在下一个模块中进行筛选，以进一步缓解类别不平衡问题。
+    式中，$\mathbf{Q} \subset \mathbf{M}_i$为$m$个源域候选混合子集的集合；$\mathbf{q}_i$代表第$i$个候选子集；$\mathbf{p}_i$代表一个目标域点云帧中已标注点的集合；$\|\mathbf{q}_i\|$和$\|\mathbf{p}_i\|$分别代表候选子集$\mathbf{q}_i$和目标点云已标注点$\mathbf{p}_i$的数量。候选子集$\mathbf{Q}$将在下一个模块中进行筛选，以进一步缓解类别不平衡问题。
 
     % \vspace{-0.1cm}
     \begin{figure}[H]
@@ -151,7 +151,7 @@
         \mathbf{\hat{Y}}=concat\{\mathbf{Y}_{\mathbf{q}_{max}},\mathbf{Y}_{\mathbf{p}_i}\}
         \end{aligned}
     \end{equation}
-    其中，$\mathbf{\hat{X}}$表示混合的点数据，$\mathbf{\hat{Y}}$则表示对应的标签。%将最终选择出的后选子集与目标域点进行混合，同时
+    式中，$\mathbf{\hat{X}}$表示混合的点数据；$\mathbf{\hat{Y}}$则表示对应的标签。%将最终选择出的后选子集与目标域点进行混合，同时
     最后更新训练集总点数以及类别点数，公式如\eqref{eq:update_numeber}所示：
     \begin{equation}
         \label{eq:update_numeber}
@@ -163,7 +163,7 @@
     
     \subsection{损失函数}
     % 对于后续的模型训练仅使用混合后的中间域数据进行微调训练，而混合后的数据都是含有标注的，因此本章使用交叉熵损失函数做为我们的优化损失函数，
-    在后续的训练中，模型仅采用混合后的中间域数据进行微调优化。由于这些数据均包含标注信息，因此所有实验均采用交叉熵损失函数作为优化策略，如公式\eqref{eq:cross_entropy}所示，其中$\hat{x}_{i} \in \hat{\mathbf{X}}$，$\hat{y}_{i} \in \hat{\mathbf{Y}}$：
+    在后续的训练中，模型仅采用混合后的中间域数据进行微调优化。由于这些数据均包含标注信息，因此所有实验均采用交叉熵损失函数作为优化策略，如公式\eqref{eq:cross_entropy}所示，其中$\hat{x}_{i} \in \hat{\mathbf{X}}$；$\hat{y}_{i} \in \hat{\mathbf{Y}}$。
     \begin{equation}
         \label{eq:cross_entropy}
         \mathbf{L}_{\text{CE}} = - \frac{1}{|I|} \sum_{i \in I} \sum_{c=1}^{C} \hat{y}_{i}^{c} \log h(\hat{x}_{i}^{c})
